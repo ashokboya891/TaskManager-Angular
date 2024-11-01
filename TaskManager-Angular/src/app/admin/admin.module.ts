@@ -17,7 +17,8 @@ import { ProjectIDUniqueValidatorDirective } from '../project-idunique-validator
     MyProfileComponent,
     ProjectsComponent,
     TeamSizeValidatorDirective,
-    ClientLocationStatusValidatorDirective
+    ClientLocationStatusValidatorDirective,
+    ProjectIDUniqueValidatorDirective
 
    
   ],
@@ -27,7 +28,7 @@ import { ProjectIDUniqueValidatorDirective } from '../project-idunique-validator
     FormsModule
   ],
   exports:[
-    DashboardComponent,AboutComponent,MyProfileComponent,ProjectsComponent,TeamSizeValidatorDirective,ClientLocationStatusValidatorDirective
+    DashboardComponent,AboutComponent,MyProfileComponent,ProjectsComponent,TeamSizeValidatorDirective,ClientLocationStatusValidatorDirective,ProjectIDUniqueValidatorDirective
   ],
   providers:[DashboardService]
 })

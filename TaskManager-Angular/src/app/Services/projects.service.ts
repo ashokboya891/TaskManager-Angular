@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams  } from "@angular/common/http";
 import { Project } from '../project';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { NotificationService } from '../NotificationService';
 @Injectable({
   providedIn: 'root'
@@ -33,10 +33,19 @@ export class ProjectsService {
         // })
       );
   }
-  getProjectByProjectID(ProjectID: number): Observable<Project>
-  {
-    return this.httpclient.get<Project>(this.url + "/api/Projects/api/projects/searchbyprojectid/" + ProjectID, { responseType: "json" });
+  // getProjectByProjectID(ProjectID: number): Observable<Project>
+  // {
+  //   return this.httpclient.get<Project>(this.url + "/api/Projects/api/projects/searchbyprojectid/" + ProjectID, { responseType: "json" });
+  // }
+  getProjectByProjectID(ProjectID: number): Observable<Project | null> {
+  
+    // return this.httpclient.get<Project>(`${this.url}/api/Projects/searchbyprojectid/${ProjectID}`, { responseType: "json" })
+    return this.httpclient.get<Project>(`${this.url}/api/Projects/api/projects/searchbyprojectid/${ProjectID}`, { responseType: "json" })
+    .pipe(
+        catchError(() => of(null)) // Return null if the project is not found or if there's an error
+      );
   }
+  
   // getProjectByProjectID(ProjectID: number): Observable<Project>
   // {
   //   return this.httpclient.get<Project>(this.url + "/api/Projects/" + ProjectID, { responseType: "json" });
