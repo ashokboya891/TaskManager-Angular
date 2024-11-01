@@ -12,11 +12,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'; // Ensure this 
 import { JwtInterceptorService } from './jwt-interceptor.service';
 import { JwtUnAuthorizedInterceptorService } from './jwt-un-authorized-interceptor.service';
 import { ToastrModule } from "ngx-toastr";
+import { ClientLocationStatusValidatorDirective } from './client-location-status-validator.directive';
+import { SignUpComponent } from './sign-up/sign-up.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
-    
+    LoginComponent,
+    SignUpComponent
     
   ],
   imports: [

@@ -6,28 +6,7 @@ import { MyProfileComponent } from './admin/my-profile/my-profile.component';
 import {LoginComponent  } from "../app/login/login.component";
 import {ProjectsComponent  } from "../app/admin/projects/projects.component";
 import { canActivateGuard } from './can-activate.guard';
-// const routes: Routes = [
-//   {
-//     path:"dashboard",component:DashboardComponent,canActivate: [ canActivateGuard ]
-//   },
-//   {
-//     path:"about",component:AboutComponent,canActivate: [ canActivateGuard ]
-//   },
-//   {
-//     path:"myProfile",component:MyProfileComponent,canActivate: [ canActivateGuard ]
-//   },
-//   {
-//     path:"projects",component:ProjectsComponent,canActivate: [ canActivateGuard ]
-
-//   },
-//   {
-//     path:"login",component:LoginComponent
-
-//   },
-//   // {
-//   //  path:"", redirectTo:"login",pathMatch:"full"
-//   // }
-// ]
+import { SignUpComponent } from './sign-up/sign-up.component';
 const routes: Routes = [
   {
     path: "dashboard", component: DashboardComponent, canActivate: [canActivateGuard], data: {
@@ -52,9 +31,10 @@ const routes: Routes = [
   {
     path: "login", component: LoginComponent
   },
-  // {
-  //  path: "", redirectTo: "login", pathMatch: "full"
-  // }
+  {
+    path: "signup", component: SignUpComponent
+  },
+ 
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes,{useHash:true})],

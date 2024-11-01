@@ -51,7 +51,11 @@
         <th>Actions</th>
       </thead>
       <tbody>
-        <tr *ngFor="let project of projects; let i = index" [ngClass]="{ 'text-muted': !project.active}">
+        <tr *ngFor="let project of projects; let i = index" [ngClass]="{
+          'text-danger': !project.active,
+        }">
+          <!-- 'text-uppercase': true -->
+
           <td>{{project.projectID}}</td>
           <td>{{project.projectName}}</td>
           <td>{{project.dateOfStart}}</td>
@@ -130,8 +134,8 @@
             <label for="col-sm-4 col-form-label">&nbsp;</label>
             <div class="col-sm-8">
               <div class="form-check">
-                <input type="checkbox" id="chkNewActive" value="true" class="form-check-input" [(ngModel)]="newProject.active" name="active">
-                <label class="form-check-label" for="chkNewActive">Active</label>
+                <input type="checkbox"  [value]="true" id="chkNewActive" value="true" class="form-check-input" [(ngModel)]="newProject.active" name="active">
+                <label class="form-check-label"  for="chkNewActive">Active</label>
               </div>
             </div>
           </div>

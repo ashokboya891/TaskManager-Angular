@@ -51,7 +51,8 @@ export class ProjectsComponent implements OnInit {
   }
   onNewClick(event: any)
   {
-     this.newForm.resetForm();
+    this.newForm.resetForm();
+    // this.newForm=true;
   }
 
   onSaveClick() {
