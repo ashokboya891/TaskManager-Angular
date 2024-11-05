@@ -12,7 +12,9 @@ import { CustomValidatorsService } from '../Services/custom-validators.service';
 export class SignUpComponent implements OnInit{
   signUpForm: FormGroup | any = null;
   genders = ["male", "female"];
-  countries: Country[] = []
+  countries: Country[] = [];
+  registerError: string | null = null;
+
 
   constructor(private countriesService: CountriesService,private formBuilder:FormBuilder,private customValidatorService:CustomValidatorsService)
   {
@@ -31,10 +33,16 @@ export class SignUpComponent implements OnInit{
       email: [null, [Validators.required, Validators.email]],
       mobile: [null, [Validators.required, Validators.pattern(/^[7896]\d{9}$/)]],
       dateOfBirth: [null, [Validators.required,this.customValidatorService.minimumAgeValidator(18)]],
+      password: [null, [Validators.required]],
+      confirmPassword: [null, [Validators.required]],
       gender: [null, [Validators.required]],
       countryID: [null, [Validators.required]],
       receiveNewsLetters: [null],
       skills: this.formBuilder.array([])
+    },{
+      validators: [
+        this.customValidatorService.compareValidator("confirmPassword", "password")
+      ]
     });
     this.signUpForm.valueChanges.subscribe((value: any) =>
       {
