@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Country } from '../country';
 import { CountriesService } from '../countries.service';
+import { CustomValidatorsService } from '../Services/custom-validators.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,7 +14,7 @@ export class SignUpComponent implements OnInit{
   genders = ["male", "female"];
   countries: Country[] = []
 
-  constructor(private countriesService: CountriesService,private formBuilder:FormBuilder)
+  constructor(private countriesService: CountriesService,private formBuilder:FormBuilder,private customValidatorService:CustomValidatorsService)
   {
   }
 
@@ -28,8 +29,8 @@ export class SignUpComponent implements OnInit{
         lastName: [null, [Validators.required, Validators.minLength(2)]],
       }),
       email: [null, [Validators.required, Validators.email]],
-      mobile: [null, [Validators.required, Validators.pattern(/^[789]\d{9}$/)]],
-      dateOfBirth: [null, [Validators.required]],
+      mobile: [null, [Validators.required, Validators.pattern(/^[7896]\d{9}$/)]],
+      dateOfBirth: [null, [Validators.required,this.customValidatorService.minimumAgeValidator(18)]],
       gender: [null, [Validators.required]],
       countryID: [null, [Validators.required]],
       receiveNewsLetters: [null],
