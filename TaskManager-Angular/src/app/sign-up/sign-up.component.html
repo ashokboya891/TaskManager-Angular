@@ -55,14 +55,14 @@
           <div class="form-group form-row">
             <label for="mobile" class="col-md-4 col-form-label">Mobile:</label>
             <div class="col-md-8">
-              <input type="text" name="mobile" id="mobile" placeholder="Mobile" class="form-control" formControlName="mobile" [ngClass]="{
-                'is-invalid': signUpForm.get('mobile').invalid && (signUpForm.get('mobile').dirty || signUpForm.get('mobile').touched || signUpForm.submitted),
+              <input type="text" name="phoneNumber" id="phoneNumber" placeholder="phoneNumber" class="form-control" formControlName="phoneNumber" [ngClass]="{
+                'is-invalid': signUpForm.get('phoneNumber').invalid && (signUpForm.get('phoneNumber').dirty || signUpForm.get('phoneNumber').touched || signUpForm.submitted),
 
-                'is-valid': signUpForm.get('mobile').valid && (signUpForm.get('mobile').dirty || signUpForm.get('mobile').touched || signUpForm.submitted) }">
+                'is-valid': signUpForm.get('phoneNumber').valid && (signUpForm.get('phoneNumber').dirty || signUpForm.get('phoneNumber').touched || signUpForm.submitted) }">
 
-              <span class="text-danger" *ngIf="signUpForm.get('mobile').invalid && (signUpForm.get('mobile').dirty || signUpForm.get('mobile').touched || signUpForm.submitted) && signUpForm.get('mobile').errors?.required">Mobile can't be blank</span>
+              <span class="text-danger" *ngIf="signUpForm.get('phoneNumber').invalid && (signUpForm.get('phoneNumber').dirty || signUpForm.get('phoneNumber').touched || signUpForm.submitted) && signUpForm.get('phoneNumber').errors?.required">Mobile can't be blank</span>
 
-              <span class="text-danger" *ngIf="signUpForm.get('mobile').invalid && (signUpForm.get('mobile').dirty || signUpForm.get('mobile').touched || signUpForm.submitted) && signUpForm.get('mobile').errors?.pattern">Mobile is invalid</span>
+              <span class="text-danger" *ngIf="signUpForm.get('phoneNumber').invalid && (signUpForm.get('phoneNumber').dirty || signUpForm.get('phoneNumber').touched || signUpForm.submitted) && signUpForm.get('phoneNumber').errors?.pattern">Mobile is invalid</span>
             </div>
           </div>
 

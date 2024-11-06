@@ -4,6 +4,7 @@ import { LoginViewModel } from '../login-view-model';
 import { User } from '../User';
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { JwtHelperService  } from "@auth0/angular-jwt";
+import { RegisterViewModel } from '../register-view-model';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,6 +31,34 @@ export class LoginService {
         return user;
       })
     );
+  }
+  public Register(signUpViewModel: RegisterViewModel): Observable<any>
+  {
+    this.httpClient = new HttpClient(this.httpbackend);
+    return this.httpClient.post<any>(this.url + "/register", signUpViewModel, { responseType: "json", observe: "response" })
+      .pipe(map(response =>
+      {
+        if (response)
+        {
+          this.currentUserName = response.body.userName;
+          sessionStorage['currentUser'] = JSON.stringify(response.body);
+        }
+        return response.body;
+      }));
+    // this.httpClient = new HttpClient(this.httpbackend);
+    // return this.httpClient.post<any>(this.url + "/register", signUpViewModel, { responseType: "json"})
+    //   .pipe(map(response =>
+    //   {
+    //     if (response)
+    //     {
+    //       this.currentUserName = response.body.userName;
+    //       this.currentUserName = response.body.email;
+    //       console.log(this.currentUserName+"in login servcie register method");
+    //       localStorage.setItem("token", response.token);
+    //       sessionStorage['currentUser'] = JSON.stringify(response);
+    //     }
+    //     return response.body;
+    //   }));
   }
 
 

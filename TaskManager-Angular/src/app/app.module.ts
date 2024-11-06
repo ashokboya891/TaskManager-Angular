@@ -14,11 +14,13 @@ import { JwtUnAuthorizedInterceptorService } from './jwt-un-authorized-intercept
 import { ToastrModule } from "ngx-toastr";
 import { ClientLocationStatusValidatorDirective } from './client-location-status-validator.directive';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { TasksComponent } from './tasks/tasks.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    TasksComponent
     
   ],
   imports: [

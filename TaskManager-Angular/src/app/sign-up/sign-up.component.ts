@@ -3,6 +3,9 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Country } from '../country';
 import { CountriesService } from '../countries.service';
 import { CustomValidatorsService } from '../Services/custom-validators.service';
+import { LoginService } from '../Services/login.service';
+import { RegisterViewModel } from '../register-view-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,13 +19,17 @@ export class SignUpComponent implements OnInit{
   registerError: string | null = null;
 
 
-  constructor(private countriesService: CountriesService,private formBuilder:FormBuilder,private customValidatorService:CustomValidatorsService)
+  constructor(private countriesService: CountriesService,private formBuilder:FormBuilder,private customValidatorService:CustomValidatorsService
+    ,private loginService:LoginService,private router:Router
+  )
   {
   }
 
   ngOnInit()
   {
-    this.countries = this.countriesService.getCountries();
+     this.countriesService.getCountries().subscribe((resp)=>{
+      this.countries=resp;
+    });
 
    
     this.signUpForm = this.formBuilder.group({
@@ -31,7 +38,7 @@ export class SignUpComponent implements OnInit{
         lastName: [null, [Validators.required, Validators.minLength(2)]],
       }),
       email: [null, [Validators.required, Validators.email]],
-      mobile: [null, [Validators.required, Validators.pattern(/^[7896]\d{9}$/)]],
+      phoneNumber: [null, [Validators.required, Validators.pattern(/^[7896]\d{9}$/)]],
       dateOfBirth: [null, [Validators.required,this.customValidatorService.minimumAgeValidator(18)]],
       password: [null, [Validators.required]],
       confirmPassword: [null, [Validators.required]],
@@ -85,13 +92,30 @@ export class SignUpComponent implements OnInit{
     //   lastName: "Smith",
     //   email: "smith@gmail.com"
     // });
-  }
+    this.signUpForm["submitted"] = true;
+    console.log(this.signUpForm);
 
+    if (this.signUpForm.valid)
+    {
+      var signUpViewModel = this.signUpForm.value as RegisterViewModel;
+      this.loginService.Register(signUpViewModel).subscribe(
+        (response) =>
+        {
+          localStorage["token"] = response.token;
+          this.router.navigate(["tasks"]);
+        },
+        (error) =>
+        {
+          console.log(error);
+          this.registerError = "Unable to submit";
+        });
+      }
+    }
   onAddSkill()
   {
     var formGroup = new FormGroup({
       skillName: new FormControl(null, [Validators.required]),
-      level: new FormControl(null, [Validators.required])
+      skillLevel: new FormControl(null, [Validators.required])
     });
 
     (<FormArray>this.signUpForm.get("skills")).push(formGroup);

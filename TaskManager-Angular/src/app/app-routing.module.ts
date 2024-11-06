@@ -7,6 +7,7 @@ import {LoginComponent  } from "../app/login/login.component";
 import {ProjectsComponent  } from "../app/admin/projects/projects.component";
 import { canActivateGuard } from './can-activate.guard';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { TasksComponent } from './tasks/tasks.component';
 const routes: Routes = [
   {
     path: "dashboard", component: DashboardComponent, canActivate: [canActivateGuard], data: {
@@ -33,6 +34,11 @@ const routes: Routes = [
   },
   {
     path: "signup", component: SignUpComponent
+  },
+  {
+    path: "tasks", component: TasksComponent,canActivate: [canActivateGuard], data: {
+      expectedRoles: [ "Admin","User"]  // Allow both roles
+    }
   },
  
 ];
