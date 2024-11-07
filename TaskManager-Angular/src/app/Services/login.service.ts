@@ -60,7 +60,11 @@ export class LoginService {
     //     return response.body;
     //   }));
   }
-
+  getUserByEmail(Email: string): Observable<any>
+  {
+    this.httpClient = new HttpClient(this.httpbackend);
+    return this.httpClient.get<any>(this.url + "/getUserByEmail/" + Email, { responseType: "json" });
+  }
 
   public Logout() {
     sessionStorage.removeItem("currentUser");
