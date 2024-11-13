@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams  } from "@angular/common/http";
 import { Project } from '../project';
-import { catchError, map, Observable, Observer, of, throwError } from 'rxjs';
+import { catchError, map, Observable, Observer, of, Subject, throwError } from 'rxjs';
 import { NotificationService } from '../NotificationService';
 @Injectable({
   providedIn: 'root'
@@ -11,15 +11,12 @@ export class ProjectsService {
 
   jsonUrl:string="http://localhost:3000/projects";
   
-  public MyObservable:Observable<boolean>|any;
-  private MyObeservers:Observer<boolean>[]=[];
+  public MySubject:Subject<boolean>|any;
 
   constructor(private httpclient:HttpClient,private notificationService: NotificationService ) 
   {
     //so every time new object project is created in for loop for project component in projects.html -->from there myobersvle is getting invoked every time from ngonint that will invoke project servcie constrcuture so everytime new oberser is being added into a=obervable 
-    this.MyObservable=Observable.create((observer:Observer<boolean>)=>{
-      this.MyObeservers.push(observer)
-    });
+   this.MySubject=new Subject<boolean>();
   }
   
   hideDetails: boolean = false;
@@ -27,10 +24,7 @@ export class ProjectsService {
   toggleDetails()
   {
     this.hideDetails=!this.hideDetails;
-    for (let i = 0; i < this.MyObeservers.length ; i++)
-      {
-        this.MyObeservers[i].next(this.hideDetails);
-      }
+    this.MySubject.next(this.hideDetails);
   }
   getProjects(): Observable<Project[]> {
     let headers = new HttpHeaders();
