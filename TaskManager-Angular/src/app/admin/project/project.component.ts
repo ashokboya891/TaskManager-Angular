@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Project } from 'src/app/project';
+import { ProjectsService } from 'src/app/Services/projects.service';
 
 @Component({
   selector: 'app-project',
@@ -10,13 +11,14 @@ export class ProjectComponent implements OnInit{
   
   @Input("currentProject") project: Project | any;
   @Input("recordIndex") i: number = 0;
-  hideDetails: boolean = false;
   @Output() editClick = new EventEmitter();
   @Output() deleteClick = new EventEmitter();
 
-  constructor()
+  constructor(public projectService: ProjectsService) 
   {
+
   }
+  
 
   ngOnInit()
   {
@@ -31,8 +33,5 @@ export class ProjectComponent implements OnInit{
   {
     this.deleteClick.emit({ event, i});
   }
-  toggleDetails()
-  {
-    this.hideDetails=!this.hideDetails;
-  }
+ 
 }

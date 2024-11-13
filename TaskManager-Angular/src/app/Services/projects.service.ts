@@ -12,7 +12,12 @@ export class ProjectsService {
   jsonUrl:string="http://localhost:3000/projects";
   
   constructor(private httpclient:HttpClient,private notificationService: NotificationService ) { }
+  hideDetails: boolean = false;
 
+  toggleDetails()
+  {
+    this.hideDetails=!this.hideDetails;
+  }
   getProjects(): Observable<Project[]> {
     let headers = new HttpHeaders();
     // headers = headers.append("Authorization", `Bearer ${localStorage['token']}`);headers: headers,

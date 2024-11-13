@@ -22,7 +22,8 @@ import { ProjectComponent } from './project/project.component';
     ProjectIDUniqueValidatorDirective,
     Login2fcComponent,
     ProjectComponent,
-    DashboardComponent
+    DashboardComponent,
+    
   ],
   imports: [
     CommonModule,

@@ -40,14 +40,16 @@ export class ProjectsComponent implements AfterViewInit {
     setTimeout(() => {
       console.log("Project components:", this.prj.toArray()); // Verify all components are initialized
     });
-  }
+   }
 
   onHideShowDetails(event: any) {
-    const projs = this.prj.toArray();
-    projs.forEach((proj) => {
-      proj.toggleDetails(); // Toggle details in each ProjectComponent
-      console.log(proj);     // Log each component to verify
-    });
+    this.projectService.toggleDetails();
+
+    // const projs = this.prj.toArray();
+    // projs.forEach((proj) => {
+    //   proj.toggleDetails(); // Toggle details in each ProjectComponent
+    //   console.log(proj);     // Log each component to verify
+    // });
   }
   ngOnInit(): void {
     this.projectService.getProjects().subscribe((opt:Project[])=>{

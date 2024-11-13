@@ -1,17 +1,12 @@
 <div class="card card-primary">
-  <!-- Card Header: always visible -->
+
   <div class="card-header">
     <div>#{{project.projectID}}</div>
     <h5>{{project.projectName}}</h5>
-    <!-- Add a toggle button in the header to minimize/maximize details -->
-    <button (click)="toggleDetails()" class="btn btn-link">
-      {{ hideDetails ? 'Show Details' : 'Hide Details' }}
-    </button>
   </div>
-  
-  <!-- Card Body: only visible when hideDetails is false -->
-  <div *ngIf="!hideDetails" class="card-body">
-    <table class="table table-borderless">
+
+  <div class="card-body">
+    <table class="table table-borderless" [hidden]="projectService.hideDetails">
       <tr>
         <th>Date of Start</th>
         <td>{{project.dateOfStart}}</td>
@@ -31,8 +26,7 @@
     </table>
   </div>
 
-  <!-- Card Footer: only visible when hideDetails is false -->
-  <div *ngIf="!hideDetails" class="card-footer">
+  <div class="card-footer">
     <button class="btn btn-info" (click)="onEditClick($event, i)" data-toggle="modal" data-target="#editModal">Edit</button>&nbsp;
     <button class="btn btn-warning" (click)="onDeleteClick($event, i)" data-toggle="modal" data-target="#deleteModal">Delete</button>
   </div>
