@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ClientLocation } from 'src/app/client-location';
 import { ClientLocationService } from 'src/app/client-location.service';
@@ -15,7 +15,6 @@ import { ProjectComponent } from '../project/project.component';
 })
 export class ProjectsComponent implements OnInit {
 
-  @ViewChild("prj") prj : ProjectComponent |any;
 
   projects:Project[] =[];
 
@@ -202,10 +201,15 @@ export class ProjectsComponent implements OnInit {
   }
 
 
+  @ViewChildren("prj") prj : QueryList<ProjectComponent> | any;
 
   onHideShowDetails(event: any)
   {
-    console.log(event)
-    this.prj.toggleDetails();
+    let projs = this.prj.toArray();
+    for (var i = 0; i < projs.length; i++)
+    {
+      projs[i].toggleDetails();
+      console.log([projs[i]]);
+    }
   }
 }
