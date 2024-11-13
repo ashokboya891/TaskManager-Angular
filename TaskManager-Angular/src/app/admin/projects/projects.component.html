@@ -3,11 +3,15 @@
   <i class="fa fa-circle-o-notch fa-spin" style="font-size:34px" *ngIf="showLoading"></i>
 </h1>
 <div class="row">
-  <div class="col-xl-9 mx-auto">
+  <div class="col-xl-12 mx-auto">
     <div class="form-group form-row">
 
-      <div class="col-2">
+      <div class="col-1">
         <button class="btn btn-primary" data-toggle="modal" data-target="#newModal" (click)="onNewClick($event)">Create Project</button>
+      </div>
+
+      <div class="col-1">
+        <button class="btn btn-secondary" (click)="onHideShowDetails($event)">Hide/Show Details</button>
       </div>
 
       <label for="drpSearchBy" class="col-form-label col-2 text-right">Search by:</label>
@@ -29,46 +33,20 @@
           <div class="input-group-append" (click)="onSearchClick()">
             <span class="input-group-text"><i class="fa fa-search"></i></span>
           </div>
-          <div class="input-group-append" (click)="refresh()">
-            <span class="input-group-text"><i class="fa fa-clear"></i>Clear</span>
-          </div>
         </div>
       </div>
-      
 
     </div>
   </div>
 
-  <div class="col-xl-9 mx-auto">
-    <table class="table">
-      <thead>
-        <th>Project ID</th>
-        <th>Project Name</th>
-        <th>Date of Start</th>
-        <th>Team Size</th>
-        <th>Client Location</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let project of projects; let i = index" [ngClass]="{
-          'text-danger': !project.active,
-        }">
-          <!-- 'text-uppercase': true -->
+  <div class="col-xl-12 mx-auto">
+    <div class="row">
 
-          <td>{{project.projectID}}</td>
-          <td>{{project.projectName}}</td>
-          <td>{{project.dateOfStart}}</td>
-          <td>{{project.teamSize}}</td>
-          <td>{{project.clientLocation.clientLocationName}}</td>
-          <td>{{project.status}}</td>
-          <td>
-            <button class="btn btn-info" (click)="onEditClick($event, i)" data-toggle="modal" data-target="#editModal">Edit</button>&nbsp;
-            <button class="btn btn-warning" (click)="onDeleteClick($event, i)" data-toggle="modal" data-target="#deleteModal">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <div class="col-md-4" *ngFor="let project of projects; let i = index">
+        <app-project #prj [currentProject]="project" [recordIndex]="i" (editClick)="onEditClick($event, i)" (deleteClick)="onDeleteClick($event, i)"></app-project>
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -134,8 +112,8 @@
             <label for="col-sm-4 col-form-label">&nbsp;</label>
             <div class="col-sm-8">
               <div class="form-check">
-                <input type="checkbox"  [value]="true" id="chkNewActive" value="true" class="form-check-input" [(ngModel)]="newProject.active" name="active">
-                <label class="form-check-label"  for="chkNewActive">Active</label>
+                <input type="checkbox" id="chkNewActive" value="true" class="form-check-input" [(ngModel)]="newProject.active" name="active">
+                <label class="form-check-label" for="chkNewActive">Active</label>
               </div>
             </div>
           </div>
@@ -285,6 +263,7 @@
               <span class="text-danger" *ngIf="editForm.invalid && (editForm.dirty || editForm.touched || editForm.submitted) && (editForm.errors? editForm.errors!['clientLocationStatus'] : false)">Support projects are not allowed at Tokyo</span>
             </div>
           </div>
+
 
         </div>
         <div class="modal-footer">

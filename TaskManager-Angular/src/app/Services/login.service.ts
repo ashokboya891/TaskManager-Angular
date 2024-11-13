@@ -5,6 +5,7 @@ import { User } from '../User';
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { JwtHelperService  } from "@auth0/angular-jwt";
 import { RegisterViewModel } from '../register-view-model';
+import { Login2FA } from '../login2-fa';
 @Injectable({
   providedIn: 'root'
 })
@@ -83,7 +84,26 @@ export class LoginService {
     return false; // Token is not valid
   }
   
-  
-  
+  Login2fa(login2Fa:Login2FA):Observable<any>{
+    //https://localhost:7018/api/Account/login-2FA?code=410027&username=aboya375%40gmail.com
+      this.httpClient = new HttpClient(this.httpbackend);
+      const code = encodeURIComponent(login2Fa.code);
+const username = encodeURIComponent(login2Fa.username);
+return this.httpClient.post<any>(`${this.url}/login-2FA?code=${code}&username=${username}`, { responseType: 'json' }).pipe(
+        map(user => {
+          if (user) {
+           
+                this.currentUserName = user.email;
+                console.log(this.currentUserName+"in login servcie");
+                localStorage.setItem("token", user.token);
+                sessionStorage['currentUser'] = JSON.stringify(user);
+              
+         // Assuming you store a token
+          }
+          return user;
+        })
+      );
+    }
+    
 
 }

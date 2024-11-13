@@ -1,21 +1,18 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { User } from '../User';
-import { LoginViewModel } from '../login-view-model';
+import { Component, OnInit } from '@angular/core';
+import { Login2FA } from '../login2-fa';
 import { LoginService } from '../Services/login.service';
 import { Router } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ToastrService } from 'ngx-toastr';
 import { NotificationService } from '../NotificationService';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-
+  selector: 'app-login2fc',
+  templateUrl: './login2fc.component.html',
+  styleUrls: ['./login2fc.component.scss']
 })
-export class LoginComponent implements OnInit {
-  loginviewmodel: LoginViewModel = new LoginViewModel();
+export class Login2fcComponent  implements OnInit{
+  login2fa: Login2FA = new Login2FA();
   loginError:string="";
+
  
 
   ngOnInit(): void {
@@ -26,12 +23,11 @@ export class LoginComponent implements OnInit {
 
   onLoginClick(event: any)
   {
-    this.loginservie.Login(this.loginviewmodel).subscribe(
+    this.loginservie.Login2fa(this.login2fa).subscribe(
       (response) =>
       {
         localStorage["token"] = response.token;
-        //this.notificationService.showSuccess("otp sended to registerd mail please check")
-        this.routerService.navigateByUrl("/about");
+        this.routerService.navigateByUrl("/login2FA");
         // this.toast.success("logged in..!")
       },
       (error) => {
@@ -44,5 +40,4 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-  
 }

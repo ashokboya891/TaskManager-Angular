@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ClientLocation } from 'src/app/client-location';
 import { ClientLocationService } from 'src/app/client-location.service';
@@ -6,6 +6,7 @@ import { NotificationService } from 'src/app/NotificationService';
 import { Project } from 'src/app/project';
 import { ProjectsService } from 'src/app/Services/projects.service';
 import * as $ from "jquery";
+import { ProjectComponent } from '../project/project.component';
 
 @Component({
   selector: 'app-projects',
@@ -13,6 +14,8 @@ import * as $ from "jquery";
   styleUrls: ['./projects.component.scss'],
 })
 export class ProjectsComponent implements OnInit {
+
+  @ViewChild("prj") prj : ProjectComponent |any;
 
   projects:Project[] =[];
 
@@ -108,39 +111,7 @@ export class ProjectsComponent implements OnInit {
     });
   }
   }
-  
-  // onSaveClick()
-  // {
-  //   this.newProject.clientLocation.clientLocationID = 0;
-  //   const selectedClientLocation = this.clientLocations.find(cl => cl.clientLocationID === this.newProject.clientLocationID);
 
-  //   this.projectService.insertProjects(this.newProject).subscribe((response) =>
-  //   {
-  //     //Add Project to Grid
-  //     var p: Project = new Project();
-  //     p.projectID = response.projectID;
-  //     p.projectName = response.projectName;
-  //     p.dateOfStart = response.dateOfStart;
-  //     p.teamSize = response.teamSize;
-  //     p.clientLocation = response.clientLocation;
-  //     p.active = response.active;
-  //     p.clientLocationID = response.clientLocationID;
-  //     p.status = response.status;
-  //     this.projects.push(p);
-
-  //     //Clear New Project Dialog - TextBoxes
-  //     this.newProject.projectID = null;
-  //     this.newProject.projectName = null;
-  //     this.newProject.dateOfStart = null;
-  //     this.newProject.teamSize = null;
-  //     this.newProject.active = false;
-  //     this.newProject.clientLocationID = null;
-  //     this.newProject.status = null;
-  //   },(error) =>
-  //   {
-  //     console.log(error);
-  //   });
-  // }
 
   onEditClick(event: any, index: number)
   {
@@ -156,6 +127,7 @@ export class ProjectsComponent implements OnInit {
   }
  
   onUpdateClick() {
+    console.log(this.editProject)
     this.projectService.updateProject(this.editProject).subscribe(
       (response: Project) => {
        this.notificationService.showInfo("updated..!")
@@ -227,5 +199,13 @@ export class ProjectsComponent implements OnInit {
           console.log(error);
         }
       );
+  }
+
+
+
+  onHideShowDetails(event: any)
+  {
+    console.log(event)
+    this.prj.toggleDetails();
   }
 }

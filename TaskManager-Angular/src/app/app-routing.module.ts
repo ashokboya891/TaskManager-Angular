@@ -8,6 +8,7 @@ import {ProjectsComponent  } from "../app/admin/projects/projects.component";
 import { canActivateGuard } from './can-activate.guard';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { Login2fcComponent } from './login2fc/login2fc.component';
 const routes: Routes = [
   {
     path: "dashboard", component: DashboardComponent, canActivate: [canActivateGuard], data: {
@@ -34,6 +35,10 @@ const routes: Routes = [
   },
   {
     path: "signup", component: SignUpComponent
+  },
+  {
+    path: "login2FA", component: Login2fcComponent
+
   },
   {
     path: "tasks", component: TasksComponent,canActivate: [canActivateGuard], data: {
