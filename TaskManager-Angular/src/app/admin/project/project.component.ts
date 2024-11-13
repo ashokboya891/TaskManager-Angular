@@ -19,9 +19,13 @@ export class ProjectComponent implements OnInit{
 
   }
   
+  hideDetails: boolean = false;
 
   ngOnInit()
   {
+    this.projectService.MyObservable.subscribe((hide:any) => {
+      this.hideDetails = hide;
+    });
   }
 
   onEditClick(event: any, i: number)
