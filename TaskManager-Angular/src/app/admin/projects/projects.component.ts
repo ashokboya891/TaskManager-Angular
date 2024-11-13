@@ -1,4 +1,4 @@
-import { Component, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ClientLocation } from 'src/app/client-location';
 import { ClientLocationService } from 'src/app/client-location.service';
@@ -13,7 +13,7 @@ import { ProjectComponent } from '../project/project.component';
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements AfterViewInit {
 
 
   projects:Project[] =[];
@@ -33,6 +33,21 @@ export class ProjectsComponent implements OnInit {
   @ViewChild("editForm") editForm: NgForm | any = null;
   constructor(private projectService:ProjectsService,private clientLocationService:ClientLocationService,private notificationService:NotificationService) {
   
+  }
+  @ViewChildren("prj") prj!: QueryList<ProjectComponent>;
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      console.log("Project components:", this.prj.toArray()); // Verify all components are initialized
+    });
+  }
+
+  onHideShowDetails(event: any) {
+    const projs = this.prj.toArray();
+    projs.forEach((proj) => {
+      proj.toggleDetails(); // Toggle details in each ProjectComponent
+      console.log(proj);     // Log each component to verify
+    });
   }
   ngOnInit(): void {
     this.projectService.getProjects().subscribe((opt:Project[])=>{
@@ -201,15 +216,15 @@ export class ProjectsComponent implements OnInit {
   }
 
 
-  @ViewChildren("prj") prj : QueryList<ProjectComponent> | any;
+  // @ViewChildren("prj") prj : QueryList<ProjectComponent> | any;
 
-  onHideShowDetails(event: any)
-  {
-    let projs = this.prj.toArray();
-    for (var i = 0; i < projs.length; i++)
-    {
-      projs[i].toggleDetails();
-      console.log([projs[i]]);
-    }
-  }
+  // onHideShowDetails(event: any)
+  // {
+  //   let projs = this.prj.toArray();
+  //   for (var i = 0; i < projs.length; i++)
+  //   {
+  //     projs[i].toggleDetails();
+  //     console.log([projs[i]]);
+  //   }
+  // }
 }
