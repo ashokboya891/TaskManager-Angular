@@ -34,8 +34,18 @@ export class ProjectsComponent implements AfterViewInit {
   constructor(private projectService:ProjectsService,private clientLocationService:ClientLocationService,private notificationService:NotificationService) {
   
   }
-  @ViewChildren("prj") prj!: QueryList<ProjectComponent>;
+  isAllChecked: boolean = false;
 
+  @ViewChildren("prj") prj!: QueryList<ProjectComponent>;
+  
+  isAllCheckedChange(event: any)
+  {
+    let proj = this.prj.toArray();
+    for (let i = 0; i < proj.length; i++)
+    {
+      proj[i].isAllCheckedChange(this.isAllChecked);
+    }
+  }
   ngAfterViewInit() {
     setTimeout(() => {
       console.log("Project components:", this.prj.toArray()); // Verify all components are initialized
