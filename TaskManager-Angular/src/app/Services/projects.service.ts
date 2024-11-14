@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams  } from "@angular/common/http";
 import { Project } from '../project';
-import { catchError, map, Observable, Observer, of, Subject, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, Observer, of, Subject, throwError } from 'rxjs';
 import { NotificationService } from '../NotificationService';
 @Injectable({
   providedIn: 'root'
@@ -11,20 +11,20 @@ export class ProjectsService {
 
   jsonUrl:string="http://localhost:3000/projects";
   
-  public MySubject:Subject<boolean>|any;
+  public MySubject:BehaviorSubject<boolean>|any;
 
   constructor(private httpclient:HttpClient,private notificationService: NotificationService ) 
   {
     //so every time new object project is created in for loop for project component in projects.html -->from there myobersvle is getting invoked every time from ngonint that will invoke project servcie constrcuture so everytime new oberser is being added into a=obervable 
-   this.MySubject=new Subject<boolean>();
+   this.MySubject=new BehaviorSubject<boolean>(false);
   }
   
   hideDetails: boolean = false;
  
   toggleDetails()
   {
-    this.hideDetails=!this.hideDetails;
-    this.MySubject.next(this.hideDetails);
+    //this.hideDetails=!this.hideDetails; behaviour subject will do this job for us
+    this.MySubject.next(!this.MySubject.value);
   }
   getProjects(): Observable<Project[]> {
     let headers = new HttpHeaders();
