@@ -11,6 +11,8 @@ import { ClientLocationStatusValidatorDirective } from "../client-location-statu
 import { ProjectIDUniqueValidatorDirective } from '../project-idunique-validator.directive';
 import { Login2fcComponent } from '../login2fc/login2fc.component';
 import { ProjectComponent } from './project/project.component';
+import { CheckBoxPrinterComponent  } from './check-box-printer/check-box-printer.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,7 @@ import { ProjectComponent } from './project/project.component';
     Login2fcComponent,
     ProjectComponent,
     DashboardComponent,
-    
+    CheckBoxPrinterComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { ProjectComponent } from './project/project.component';
     DashboardComponent,
     TeamSizeValidatorDirective,
     ClientLocationStatusValidatorDirective,
-    ProjectIDUniqueValidatorDirective // Export standalone component here if needed
+    ProjectIDUniqueValidatorDirective, // Export standalone component here if needed,
+    CheckBoxPrinterComponent
   ],
   providers: [DashboardComponent]
 })
