@@ -1,4 +1,4 @@
-import { Component, ContentChild, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ContentChild, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Project } from 'src/app/project';
 import { ProjectsService } from 'src/app/Services/projects.service';
@@ -43,18 +43,25 @@ export class ProjectComponent implements OnInit{
   {
     this.MySubscription.unsubscribe();
   }
-  //only one property will be picked
-  @ContentChild("selectionBox") selectionBox: CheckBoxPrinterComponent | any = null;
+  // cotent child only one obj will be picked  //ContentChildren will pick multiple objs
+  @ContentChildren("selectionBox") selectionBoxes:QueryList<CheckBoxPrinterComponent> | any = null;
 
   isAllCheckedChange(b: boolean)
   {
+    let selectionBox = this.selectionBoxes.toArray();
     if (b)
     {
-      this.selectionBox.check();
+      for (let i = 0; i < selectionBox.length; i++)
+      {
+        selectionBox[i].check();
+      }
     }
     else
     {
-      this.selectionBox.unCheck();
+      for (let i = 0; i < selectionBox.length; i++)
+      {
+        selectionBox[i].unCheck();
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ClientLocation } from 'src/app/client-location';
 import { ClientLocationService } from 'src/app/client-location.service';
@@ -40,12 +40,24 @@ export class ProjectsComponent implements AfterViewInit {
   
   isAllCheckedChange(event: any)
   {
+    debugger
     let proj = this.prj.toArray();
     for (let i = 0; i < proj.length; i++)
     {
       proj[i].isAllCheckedChange(this.isAllChecked);
     }
   }
+
+  @ViewChild("prjID") prjID: ElementRef | any = null;
+
+  onNewClick(event: any)
+  {
+    this.newForm.resetForm();
+    setTimeout(() => {
+      this.prjID.nativeElement.focus();
+    }, 100);
+  }
+  
   ngAfterViewInit() {
     setTimeout(() => {
       console.log("Project components:", this.prj.toArray()); // Verify all components are initialized
@@ -77,11 +89,6 @@ export class ProjectsComponent implements AfterViewInit {
   refresh()
   {
     this.ngOnInit();
-  }
-  onNewClick(event: any)
-  {
-    this.newForm.resetForm();
-    // this.newForm=true;
   }
 
   onSaveClick() {
