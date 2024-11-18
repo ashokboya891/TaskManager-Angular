@@ -12,6 +12,7 @@ import { ProjectIDUniqueValidatorDirective } from '../project-idunique-validator
 import { Login2fcComponent } from '../login2fc/login2fc.component';
 import { ProjectComponent } from './project/project.component';
 import { CheckBoxPrinterComponent  } from './check-box-printer/check-box-printer.component';
+import { NumberTowardsPipe } from '../number-towards.pipe';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { CheckBoxPrinterComponent  } from './check-box-printer/check-box-printer
     Login2fcComponent,
     ProjectComponent,
     DashboardComponent,
-    CheckBoxPrinterComponent
+    CheckBoxPrinterComponent,
+    NumberTowardsPipe
   ],
   imports: [
     CommonModule,

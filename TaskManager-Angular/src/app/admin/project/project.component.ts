@@ -9,7 +9,7 @@ import { CheckBoxPrinterComponent } from '../check-box-printer/check-box-printer
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent implements OnInit,OnChanges,DoCheck,AfterContentInit,AfterContentChecked,AfterViewInit{
+export class ProjectComponent implements OnInit {
   
   @Input("currentProject") project: Project | any;
   @Input("recordIndex") i: number = 0;
@@ -21,44 +21,44 @@ export class ProjectComponent implements OnInit,OnChanges,DoCheck,AfterContentIn
   {
 
   }
-  ngOnChanges(simpleChanges: SimpleChanges)
-  {
-    console.info("--------------ngOnChanges called");
+  // ngOnChanges(simpleChanges: SimpleChanges)
+  // {
+  //   console.info("--------------ngOnChanges called");
 
-    for (let propName in simpleChanges)
-    {
-      let chng = simpleChanges[propName];
-      let cur = JSON.stringify(chng.currentValue);
-      let prev = JSON.stringify(chng.previousValue);
-      console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
-    }
+  //   for (let propName in simpleChanges)
+  //   {
+  //     let chng = simpleChanges[propName];
+  //     let cur = JSON.stringify(chng.currentValue);
+  //     let prev = JSON.stringify(chng.previousValue);
+  //     console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
+  //   }
 
-    if (simpleChanges["project"])
-    {
-      //this.project.teamSize += 1;
-    }
-  }
-  ngDoCheck()
-  {
-    console.info("--------------ngDoCheck called");
-  }
+  //   if (simpleChanges["project"])
+  //   {
+  //     //this.project.teamSize += 1;
+  //   }
+  // }
+  // ngDoCheck()
+  // {
+  //   console.info("--------------ngDoCheck called");
+  // }
 
-  ngAfterContentInit()
-  {
-    console.info("--------------ngAfterContentInit called");
-    console.log(this.selectionBoxes.toArray());
-  }
+  // ngAfterContentInit()
+  // {
+  //   console.info("--------------ngAfterContentInit called");
+  //   console.log(this.selectionBoxes.toArray());
+  // }
 
-  ngAfterContentChecked()
-  {
-     console.info("--------------ngAfterContentChecked called");
-  }
+  // ngAfterContentChecked()
+  // {
+  //    console.info("--------------ngAfterContentChecked called");
+  // }
 
-  ngAfterViewInit()
-  {
-    console.info("--------------ngAfterViewInit called");
-    // console.log(this.tbl);
-  }
+  // ngAfterViewInit()
+  // {
+  //   console.info("--------------ngAfterViewInit called");
+  //   // console.log(this.tbl);
+  // }
 
   ngOnInit()
   {

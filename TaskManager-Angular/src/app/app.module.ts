@@ -22,6 +22,7 @@ import { TasksComponent } from './tasks/tasks.component';
     SignUpComponent,
     TasksComponent,
     
+    
   ],
   imports: [
     BrowserModule,
