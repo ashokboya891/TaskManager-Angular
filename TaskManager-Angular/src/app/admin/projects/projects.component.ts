@@ -40,7 +40,6 @@ export class ProjectsComponent implements AfterViewInit {
   
   isAllCheckedChange(event: any)
   {
-    debugger
     let proj = this.prj.toArray();
     for (let i = 0; i < proj.length; i++)
     {

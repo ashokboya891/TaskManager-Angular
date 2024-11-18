@@ -1,4 +1,4 @@
-import { Component, ContentChild, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList } from '@angular/core';
+import { Component, ContentChild, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Project } from 'src/app/project';
 import { ProjectsService } from 'src/app/Services/projects.service';
@@ -22,7 +22,20 @@ export class ProjectComponent implements OnInit{
 
   }
 
-
+  ngOnChanges(simplechanges:SimpleChanges)
+  {
+    console.log("---on changes called")
+    for (let pro in simplechanges) {
+      let chng=simplechanges[pro];
+      let cur=JSON.stringify(chng.currentValue);
+      let prev=JSON.stringify(chng.previousValue);
+      console.log(`${pro}:current values=${cur},previousValue=${prev}`)
+    }
+    if(simplechanges["project"])
+    {
+      this.project.teamSize+=1
+    }
+  }
   ngOnInit()
   {
      this.MySubscription= this.projectService.MySubject.subscribe((hide:any) => {

@@ -29,7 +29,6 @@ export class ProjectsService {
   getProjects(): Observable<Project[]> {
     let headers = new HttpHeaders();
     // headers = headers.append("Authorization", `Bearer ${localStorage['token']}`);headers: headers,
-    debugger
     return this.httpclient
       .get<Project[]>(`${this.url}/api/Projects`, {responseType: "json" })
       .pipe(
