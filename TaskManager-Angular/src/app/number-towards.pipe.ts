@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class NumberTowardsPipe implements PipeTransform {
 
  // transform(value: unknown,args?: unknown[]): unknown { //?question mark is optional param
- transform(value: any): any
+ transform(value: any,seperator:string=","): any
   {
     if (value == null)
     {
@@ -14,12 +14,12 @@ export class NumberTowardsPipe implements PipeTransform {
     }
     else
     {
-      return this.inWords(value);
+      return this.inWords(value,seperator);
     }
   }
 
-  private inWords = (n: any) : any =>
-  {
+  private inWords = (n: any, separator: string) : any =>
+    {
     let a = [
       '', 'One', 'Two', 'Three', 'Four',
       'Five', 'Six', 'Seven', 'Eight', 'Nine',
@@ -61,7 +61,7 @@ export class NumberTowardsPipe implements PipeTransform {
     let thousand = (group: any, i: any) => group === '' ? group : `${group} ${g[i]}`;
 
     if (typeof n === 'number')
-      return this.inWords(str(n));
+      return this.inWords(str(n),separator);
     else if (n === '0')
       return 'Zero';
     else
