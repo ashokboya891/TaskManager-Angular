@@ -1,4 +1,4 @@
-import { Component, ContentChild, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList, SimpleChanges } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, ContentChild, ContentChildren, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, QueryList, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Project } from 'src/app/project';
 import { ProjectsService } from 'src/app/Services/projects.service';
@@ -9,7 +9,7 @@ import { CheckBoxPrinterComponent } from '../check-box-printer/check-box-printer
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent implements OnInit{
+export class ProjectComponent implements OnInit,OnChanges,DoCheck,AfterContentInit,AfterContentChecked,AfterViewInit{
   
   @Input("currentProject") project: Project | any;
   @Input("recordIndex") i: number = 0;
@@ -21,21 +21,45 @@ export class ProjectComponent implements OnInit{
   {
 
   }
-
-  ngOnChanges(simplechanges:SimpleChanges)
+  ngOnChanges(simpleChanges: SimpleChanges)
   {
-    console.log("---on changes called")
-    for (let pro in simplechanges) {
-      let chng=simplechanges[pro];
-      let cur=JSON.stringify(chng.currentValue);
-      let prev=JSON.stringify(chng.previousValue);
-      console.log(`${pro}:current values=${cur},previousValue=${prev}`)
-    }
-    if(simplechanges["project"])
+    console.info("--------------ngOnChanges called");
+
+    for (let propName in simpleChanges)
     {
-      this.project.teamSize+=1
+      let chng = simpleChanges[propName];
+      let cur = JSON.stringify(chng.currentValue);
+      let prev = JSON.stringify(chng.previousValue);
+      console.log(`${propName}: currentValue = ${cur}, previousValue = ${prev}`);
+    }
+
+    if (simpleChanges["project"])
+    {
+      //this.project.teamSize += 1;
     }
   }
+  ngDoCheck()
+  {
+    console.info("--------------ngDoCheck called");
+  }
+
+  ngAfterContentInit()
+  {
+    console.info("--------------ngAfterContentInit called");
+    console.log(this.selectionBoxes.toArray());
+  }
+
+  ngAfterContentChecked()
+  {
+     console.info("--------------ngAfterContentChecked called");
+  }
+
+  ngAfterViewInit()
+  {
+    console.info("--------------ngAfterViewInit called");
+    // console.log(this.tbl);
+  }
+
   ngOnInit()
   {
      this.MySubscription= this.projectService.MySubject.subscribe((hide:any) => {
@@ -54,6 +78,7 @@ export class ProjectComponent implements OnInit{
   }
   ngOnDestory()
   {
+    console.log(".............ngdestory implemented");
     this.MySubscription.unsubscribe();
   }
   // cotent child only one obj will be picked  //ContentChildren will pick multiple objs
