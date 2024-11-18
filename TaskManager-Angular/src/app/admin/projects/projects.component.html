@@ -23,10 +23,10 @@
 
       <div class="col-2">
         <select class="form-control" id="drpSearchBy" name="SearchBy" [(ngModel)]="searchBy">
-          <option value="ProjectID">Project ID</option>
-          <option value="ProjectName">Project Name</option>
-          <option value="DateOfStart">Date of Start</option>
-          <option value="TeamSize">Team Size</option>
+          <option value="projectID">Project ID</option>
+          <option value="projectName">Project Name</option>
+          <option value="dateOfStart">Date of Start</option>
+          <option value="teamSize">Team Size</option>
         </select>
       </div>
 
@@ -47,7 +47,7 @@
   <div class="col-xl-12 mx-auto">
     <div class="row">
 
-      <div class="col-md-4" *ngFor="let project of projects; let i = index">
+      <div class="col-md-4" *ngFor="let project of projects | filter: searchBy : searchText; let i = index">
         <app-project #prj [currentProject]="project" [recordIndex]="i" (editClick)="onEditClick($event, i)" (deleteClick)="onDeleteClick($event, i)">
           <app-check-box-printer #selectionBox>
           </app-check-box-printer>
