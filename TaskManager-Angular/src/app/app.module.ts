@@ -21,6 +21,7 @@ import { TasksComponent } from './tasks/tasks.component';
     LoginComponent,
     SignUpComponent,
     TasksComponent,
+    
   
     
     

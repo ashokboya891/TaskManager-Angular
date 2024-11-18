@@ -14,6 +14,7 @@ import { ProjectComponent } from './project/project.component';
 import { CheckBoxPrinterComponent  } from './check-box-printer/check-box-printer.component';
 import { NumberTowardsPipe } from './number-towards.pipe';
 import { FilterPipe } from '../admin/filter.pipe';
+import { PagingPipe } from './paging.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FilterPipe } from '../admin/filter.pipe';
     DashboardComponent,
     CheckBoxPrinterComponent,
     NumberTowardsPipe,
-    FilterPipe
+    FilterPipe,
+    PagingPipe
   ],
   imports: [
     CommonModule,

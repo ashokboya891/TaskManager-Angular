@@ -7,6 +7,7 @@ import { Project } from 'src/app/project';
 import { ProjectsService } from 'src/app/Services/projects.service';
 import * as $ from "jquery";
 import { ProjectComponent } from '../project/project.component';
+import { FilterPipe } from '../filter.pipe';
 
 @Component({
   selector: 'app-projects',
@@ -20,7 +21,9 @@ export class ProjectsComponent implements AfterViewInit {
 
   clientLocations: ClientLocation[] = [];
  showLoading: boolean = true;
-
+ currentPageIndex:number=0;
+ pageSize:number=3;
+ pages:any[]=[];
   newProject: Project = new Project();
   editProject: Project = new Project();
   editIndex: any = null;
@@ -76,6 +79,7 @@ export class ProjectsComponent implements AfterViewInit {
     this.projectService.getProjects().subscribe((opt:Project[])=>{
       this.projects=opt,
       this.showLoading=false;
+      this.calculateNoOfPages();
     });
     this.clientLocationService.getClientLocations().subscribe(
       (response:any) =>
@@ -132,6 +136,7 @@ export class ProjectsComponent implements AfterViewInit {
       // Clear New Project Dialog - Resetting to a new instance
       this.newProject = new Project(); 
       $("#newFormCancel").trigger("click");
+      this.calculateNoOfPages();
 
     }, (error) => {
       if (error.error && error.error.message) {
@@ -210,6 +215,8 @@ export class ProjectsComponent implements AfterViewInit {
         this.deleteProject.projectName = null;
         this.deleteProject.teamSize = null;
         this.deleteProject.dateOfStart = null;
+        this.calculateNoOfPages();
+
       },
       (error) =>
       {
@@ -232,7 +239,30 @@ export class ProjectsComponent implements AfterViewInit {
         }
       );
   }
+  onPageIndexClicked(pageIndex: number)
+  {
+    debugger
+    this.currentPageIndex = pageIndex;
+  }
+  onSearchTextKeyup(event: any)
+  {
+    this.calculateNoOfPages();
+  }
+  calculateNoOfPages()
+  {
+    debugger
+    let filterPipe = new FilterPipe();
+    var resultProjects = filterPipe.transform(this.projects, this.searchBy, this.searchText);
+    var noOfPages = Math.ceil(resultProjects.length  / this.pageSize);
 
+    this.pages = [];
+    for (let i = 0; i < noOfPages; i++)
+    {
+      this.pages.push( { pageIndex: i });
+    }
+
+    this.currentPageIndex = 0;
+  }
 
   // @ViewChildren("prj") prj : QueryList<ProjectComponent> | any;
 
