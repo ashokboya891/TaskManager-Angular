@@ -16,6 +16,7 @@ import { ClientLocationStatusValidatorDirective } from './client-location-status
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { AlertDirective } from './alert.directive';
+import { RepeaterDirective } from './repeater.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { AlertDirective } from './alert.directive';
     SignUpComponent,
     TasksComponent,
     AlertDirective,
+    RepeaterDirective,
     
   
     
