@@ -15,6 +15,8 @@ import { CheckBoxPrinterComponent  } from './check-box-printer/check-box-printer
 import { NumberTowardsPipe } from './number-towards.pipe';
 import { FilterPipe } from '../admin/filter.pipe';
 import { PagingPipe } from './paging.pipe';
+import { ProjectDetailsComponent } from './project-details/project-details.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -30,10 +32,12 @@ import { PagingPipe } from './paging.pipe';
     CheckBoxPrinterComponent,
     NumberTowardsPipe,
     FilterPipe,
-    PagingPipe
+    PagingPipe,
+    ProjectDetailsComponent
   ],
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
     FormsModule // Import standalone component here
   ],
@@ -46,7 +50,8 @@ import { PagingPipe } from './paging.pipe';
     TeamSizeValidatorDirective,
     ClientLocationStatusValidatorDirective,
     ProjectIDUniqueValidatorDirective, // Export standalone component here if needed,
-    CheckBoxPrinterComponent
+    CheckBoxPrinterComponent,
+    ProjectDetailsComponent
   ],
   providers: [DashboardComponent]
 })

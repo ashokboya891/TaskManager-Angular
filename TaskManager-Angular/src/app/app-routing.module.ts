@@ -9,6 +9,7 @@ import { canActivateGuard } from './can-activate.guard';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { Login2fcComponent } from './login2fc/login2fc.component';
+import { ProjectDetailsComponent } from './admin/project-details/project-details.component';
 const routes: Routes = [
   {
     path: "dashboard", component: DashboardComponent, canActivate: [canActivateGuard], data: {
@@ -27,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: "myProfile", component: MyProfileComponent, canActivate: [canActivateGuard], data: {
-      expectedRoles: ["Admin","User"]  // Allow both roles
+      expectedRoles: ["Admin"]  // Allow both roles
     }
   },
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
       expectedRoles: [ "Admin","User"]  // Allow both roles
     }
   },
+  { path: "projects/view/:projectid", component: ProjectDetailsComponent, canActivate: [canActivateGuard], data: {
+    expectedRoles: [ "Admin"]  // Allow both roles
+  }
+},
  
 ];
 @NgModule({
