@@ -8,6 +8,7 @@ import { ProjectsService } from 'src/app/Services/projects.service';
 import * as $ from "jquery";
 import { ProjectComponent } from '../project/project.component';
 import { FilterPipe } from '../filter.pipe';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-projects',
@@ -18,8 +19,8 @@ export class ProjectsComponent implements AfterViewInit {
 
 
   projects:Project[] =[];
-
-  clientLocations: ClientLocation[] = [];
+  clientLocations:ClientLocation[]=[];
+  //clientLocations: ClientLocation[] = [];
  showLoading: boolean = true;
  currentPageIndex:number=0;
  pageSize:number=3;
@@ -81,7 +82,7 @@ export class ProjectsComponent implements AfterViewInit {
       this.showLoading=false;
       this.calculateNoOfPages();
     });
-    this.clientLocationService.getClientLocations().subscribe(
+      this.clientLocationService.getClientLocations().subscribe(
       (response:any) =>
       {
         this.clientLocations = response;
@@ -92,6 +93,8 @@ export class ProjectsComponent implements AfterViewInit {
   refresh()
   {
     this.ngOnInit();
+    this.currentPageIndex=0;
+    this.pageSize=3;
   }
 
   onSaveClick() {
@@ -152,6 +155,7 @@ export class ProjectsComponent implements AfterViewInit {
 
   onEditClick(event: any, index: number)
   {
+    
     this.editProject.projectID = this.projects[index].projectID;
     this.editProject.projectName = this.projects[index].projectName;
     this.editProject.dateOfStart = this.projects[index].dateOfStart.split("/").reverse().join("-"); //yyyy-MM-dd
@@ -250,7 +254,7 @@ export class ProjectsComponent implements AfterViewInit {
   }
   calculateNoOfPages()
   {
-    debugger
+    
     let filterPipe = new FilterPipe();
     var resultProjects = filterPipe.transform(this.projects, this.searchBy, this.searchText);
     var noOfPages = Math.ceil(resultProjects.length  / this.pageSize);

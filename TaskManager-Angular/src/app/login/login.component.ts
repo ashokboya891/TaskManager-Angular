@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   onLoginClick(event: any)
   {
+    
     this.loginservie.Login(this.loginviewmodel).subscribe(
       (response) =>
       {
@@ -34,14 +35,22 @@ export class LoginComponent implements OnInit {
         this.routerService.navigateByUrl("/about");
         // this.toast.success("logged in..!")
       },
-      (error) => {
-        if (error.error && error.error.detail) {
-          this.notificationService.showError(error.error.detail);
-        } else {
-          // Fallback for unexpected errors
-          this.notificationService.showError('An unexpected error occurred.');
-        }
-      }
+        (error) =>
+        {
+          console.log(error);
+                this.notificationService.showError('Invalid email or Password');
+          this.loginError = "Invalid email or Password";
+        },
+      // (error) => {
+      //   if (error.error && error.error.detail) {
+      //     this.notificationService.showError(error.error.detail);
+          
+      //     this.loginError="invalid email or password";
+      //   } else {
+      //     // Fallback for unexpected errors
+      //     this.notificationService.showError('An unexpected error occurred.');
+      //   }
+      // }
     );
   }
   
