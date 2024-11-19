@@ -155,7 +155,7 @@ export class ProjectsComponent implements AfterViewInit {
 
   onEditClick(event: any, index: number)
   {
-    
+   index=index+(this.currentPageIndex*this.pageSize); 
     this.editProject.projectID = this.projects[index].projectID;
     this.editProject.projectName = this.projects[index].projectName;
     this.editProject.dateOfStart = this.projects[index].dateOfStart.split("/").reverse().join("-"); //yyyy-MM-dd
