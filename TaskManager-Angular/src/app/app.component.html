@@ -8,21 +8,23 @@
   <div class="collapse navbar-collapse" id="mynav">
       <ul class="navbar-nav mr-auto">
           <li class="nav-item" *ngIf="loginService.currentUserName != null">
-              <a class="nav-link" routerLink="dashboard">Dashboard</a>
+            <!-- <a class="nav-link" routerLink="admin/dashboard">Dashboard</a> -->
+
+              <a class="nav-link" [routerLink]="['admin','dashboard']">Dashboard</a>
           </li>
           <li class="nav-item" *ngIf="loginService.currentUserName != null">
-            <a class="nav-link" routerLink="projects">Projects</a>
+            <a class="nav-link" [routerLink]="['admin','projects']">Projects</a>
         </li>
       
           <li class="nav-item" *ngIf="loginService.currentUserName != null">
-            <a class="nav-link" routerLink="myProfile">Admin</a>
+            <a class="nav-link" [routerLink]="['admin','myProfile']"  >Admin</a>
          </li>
          <li class="nav-item" *ngIf="loginService.currentUserName != null">
-            <a class="nav-link" routerLink="about">About</a>
+            <a class="nav-link"  [routerLink]="['about']" >About</a>
         </li>
      
          <li class="nav-item" *ngIf="loginService.currentUserName != null">
-            <a class="nav-link" routerLink="tasks">Tasks</a>
+            <a class="nav-link" [routerLink]="['User','tasks']">Tasks</a>
         </li>
           <li class="nav-item" *ngIf="loginService.currentUserName != null">
               <a class="nav-link" >{{loginService.currentUserName}}</a>

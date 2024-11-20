@@ -245,7 +245,7 @@ export class ProjectsComponent implements AfterViewInit {
   }
   onPageIndexClicked(pageIndex: number)
   {
-    debugger
+    
     this.currentPageIndex = pageIndex;
   }
   onSearchTextKeyup(event: any)

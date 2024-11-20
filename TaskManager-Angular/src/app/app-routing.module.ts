@@ -11,47 +11,72 @@ import { TasksComponent } from './tasks/tasks.component';
 import { Login2fcComponent } from './login2fc/login2fc.component';
 import { ProjectDetailsComponent } from './admin/project-details/project-details.component';
 const routes: Routes = [
-  {
-    path: "dashboard", component: DashboardComponent, canActivate: [canActivateGuard], data: {
-      expectedRoles: ["Admin"]  // Allow both roles
-    }
-  },
-  {
-    path: "projects", component: ProjectsComponent, canActivate: [canActivateGuard], data: {
-      expectedRoles: ["Admin"]  // Only Admins can access this
-    }
-  },
-  {
-    path: "about", component: AboutComponent, canActivate: [canActivateGuard], data: {
-      expectedRoles: [ "Admin","User"]  // Allow both roles
-    }
-  },
-  {
-    path: "myProfile", component: MyProfileComponent, canActivate: [canActivateGuard], data: {
-      expectedRoles: ["Admin"]  // Allow both roles
-    }
-  },
-  {
-    path: "login", component: LoginComponent
-  },
-  {
-    path: "signup", component: SignUpComponent
-  },
-  {
-    path: "login2FA", component: Login2fcComponent
+  { path: "", redirectTo: "login", pathMatch: "full" },
+  { path: "login", component: LoginComponent },
+  { path: "signup", component: SignUpComponent },
+  { path: "about", component: AboutComponent },
 
-  },
   {
-    path: "tasks", component: TasksComponent,canActivate: [canActivateGuard], data: {
-      expectedRoles: [ "Admin","User"]  // Allow both roles
-    }
+    path: "admin", canActivate: [canActivateGuard], data: { expectedRoles: ["Admin","SuperUser" ]}, children: [
+      { path: "dashboard", component: DashboardComponent, },
+      { path: "projects", component: ProjectsComponent },
+      { path: "projects/view/:projectid", component: ProjectDetailsComponent },
+      {path:"myProfile",component:MyProfileComponent}
+    ]
   },
-  { path: "projects/view/:projectid", component: ProjectDetailsComponent, canActivate: [canActivateGuard], data: {
-    expectedRoles: [ "Admin"]  // Allow both roles
-  }
-},
- 
+
+  {
+    path: "User", canActivate: [canActivateGuard], data: { expectedRoles:[ "User","Admin"] }, children: [
+      { path: "tasks", component: TasksComponent },
+    ]
+  },
 ];
+  // {
+  //   path:"admin",canActivate:[canActivateGuard],data:{expectedRoles:"Admin"},children:[
+  //     {path:"dashboard",component:DashboardComponent},
+  //   ]
+  // },
+  // {
+  //   path: "dashboard", component: DashboardComponent, canActivate: [canActivateGuard], data: {
+  //     expectedRoles: ["Admin"]  // Allow both roles
+  //   }
+  // },
+//   {
+//     path: "projects", component: ProjectsComponent, canActivate: [canActivateGuard], data: {
+//       expectedRoles: ["Admin"]  // Only Admins can access this
+//     }
+//   },
+//   {
+//     path: "about", component: AboutComponent, canActivate: [canActivateGuard], data: {
+//       expectedRoles: [ "Admin","User"]  // Allow both roles
+//     }
+//   },
+//   {
+//     path: "myProfile", component: MyProfileComponent, canActivate: [canActivateGuard], data: {
+//       expectedRoles: ["Admin"]  // Allow both roles
+//     }
+//   },
+//   {
+//     path: "", component: LoginComponent,pathMatch:"full"
+//   },
+//   {
+//     path: "signup", component: SignUpComponent
+//   },
+//   {
+//     path: "login2FA", component: Login2fcComponent
+
+//   },
+//   {
+//     path: "tasks", component: TasksComponent,canActivate: [canActivateGuard], data: {
+//       expectedRoles: [ "Admin","User"]  // Allow both roles
+//     }
+//   },
+//   { path: "projects/view/:projectid", component: ProjectDetailsComponent, canActivate: [canActivateGuard], data: {
+//     expectedRoles: [ "Admin"]  // Allow both roles
+//   }
+// },
+ 
+// ];
 @NgModule({
   imports: [RouterModule.forRoot(routes,{useHash:true})],
   exports: [RouterModule]
