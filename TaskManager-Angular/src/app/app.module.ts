@@ -25,11 +25,6 @@ import { RepeaterDirective } from './repeater.directive';
     TasksComponent,
     AlertDirective,
     RepeaterDirective,
-    
-    
-  
-    
-    
   ],
   imports: [
     BrowserModule,

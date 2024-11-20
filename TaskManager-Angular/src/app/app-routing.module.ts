@@ -16,14 +16,14 @@ const routes: Routes = [
   { path: "signup", component: SignUpComponent },
   { path: "about", component: AboutComponent },
 
-  {
-    path: "admin", canActivate: [canActivateGuard], data: { expectedRoles: ["Admin","SuperUser" ]}, children: [
-      { path: "dashboard", component: DashboardComponent, },
-      { path: "projects", component: ProjectsComponent },
-      { path: "projects/view/:projectid", component: ProjectDetailsComponent },
-      {path:"myProfile",component:MyProfileComponent}
-    ]
-  },
+  // {
+  //   path: "admin", canActivate: [canActivateGuard], data: { expectedRoles: ["Admin","SuperUser" ]}, children: [
+  //     { path: "dashboard", component: DashboardComponent, },
+  //     { path: "projects", component: ProjectsComponent },
+  //     { path: "projects/view/:projectid", component: ProjectDetailsComponent },
+  //     {path:"myProfile",component:MyProfileComponent}
+  //   ]
+  // },
 
   {
     path: "User", canActivate: [canActivateGuard], data: { expectedRoles:[ "User","Admin"] }, children: [
