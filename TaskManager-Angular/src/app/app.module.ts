@@ -14,15 +14,14 @@ import { JwtUnAuthorizedInterceptorService } from './jwt-un-authorized-intercept
 import { ToastrModule } from "ngx-toastr";
 import { ClientLocationStatusValidatorDirective } from './client-location-status-validator.directive';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { TasksComponent } from './tasks/tasks.component';
 import { AlertDirective } from './alert.directive';
 import { RepeaterDirective } from './repeater.directive';
+import { UserModule } from './User/user/user.module';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignUpComponent,
-    TasksComponent,
     AlertDirective,
     RepeaterDirective,
   ],
@@ -35,6 +34,7 @@ import { RepeaterDirective } from './repeater.directive';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
+    UserModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () =>

@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { AboutComponent } from './admin/about/about.component';
+import { AboutComponent } from './User/about/about.component';
 import { MyProfileComponent } from './admin/my-profile/my-profile.component';
 import {LoginComponent  } from "../app/login/login.component";
 import {ProjectsComponent  } from "../app/admin/projects/projects.component";
 import { canActivateGuard } from './can-activate.guard';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { TasksComponent } from './tasks/tasks.component';
+import { TasksComponent } from './User/tasks/tasks.component';
 import { Login2fcComponent } from './login2fc/login2fc.component';
 import { ProjectDetailsComponent } from './admin/project-details/project-details.component';
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignUpComponent },
-  { path: "about", component: AboutComponent },
 
   // {
   //   path: "admin", canActivate: [canActivateGuard], data: { expectedRoles: ["Admin","SuperUser" ]}, children: [
@@ -25,11 +24,13 @@ const routes: Routes = [
   //   ]
   // },
 
-  {
-    path: "User", canActivate: [canActivateGuard], data: { expectedRoles:[ "User","Admin"] }, children: [
-      { path: "tasks", component: TasksComponent },
-    ]
-  },
+  // {
+  //   path: "User", canActivate: [canActivateGuard], data: { expectedRoles:[ "User","Admin"] }, children: [
+  //     { path: "tasks", component: TasksComponent },
+  //     { path: "about", component: AboutComponent },
+
+  //   ]
+  // },
 ];
   // {
   //   path:"admin",canActivate:[canActivateGuard],data:{expectedRoles:"Admin"},children:[
