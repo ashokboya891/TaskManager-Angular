@@ -16,5 +16,4 @@ export class RepeaterDirective {
       this.viewContainerRef.createEmbeddedView(this.templateRef, { $implicit: i });
     }
   }
-
 }

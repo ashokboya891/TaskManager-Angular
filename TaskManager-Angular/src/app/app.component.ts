@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LoginService } from './Services/login.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { RouterLoggerService } from './router-logger.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent  implements OnInit {
-  constructor(public loginService: LoginService,private sanitizer: DomSanitizer)
+  constructor(public loginService: LoginService,private sanitizer: DomSanitizer,private routerLoggerService: RouterLoggerService, private router: Router)
   {
   }
   
@@ -20,13 +22,25 @@ export class AppComponent  implements OnInit {
   mytest2=this.sanitizer.bypassSecurityTrustScript("javascript:window.open('http://www.google.com')");
 
   ngOnInit() {
-    // Check if the user is logged in on app initialization
+
     const currentUser = sessionStorage.getItem('currentUser');
-    if (currentUser) {
-      const user = JSON.parse(currentUser);
-      this.loginService.currentUserName = user.email; // or however you want to store the username
-    }
+  
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        let userName = (this.loginService.currentUserName) ? this.loginService.currentUserName : "anonymous";
+
+        let logMsg = new Date().toLocaleString() + ": " + userName + " navigates to " + event.url;
+
+        this.routerLoggerService.log(logMsg).subscribe();
+      }
+      if (currentUser) {
+        const user = JSON.parse(currentUser);
+        this.loginService.currentUserName = user.email; // or however you want to store the username
+      }
+    });
+  
   }
+
   onSearchClick() {
     console.log('Search clicked for user:', this.loginService.currentUserName);
     // Implement search functionality here

@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AboutComponent } from './User/about/about.component';
 import { MyProfileComponent } from './admin/my-profile/my-profile.component';
-import {LoginComponent  } from "../app/login/login.component";
-import {ProjectsComponent  } from "../app/admin/projects/projects.component";
+import {LoginComponent  } from "./login/login.component";
+import {ProjectsComponent  } from "./admin/projects/projects.component";
 import { canActivateGuard } from './can-activate.guard';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TasksComponent } from './User/tasks/tasks.component';
@@ -79,7 +79,7 @@ const routes: Routes = [
  
 // ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash:true})],
+  imports: [RouterModule.forRoot(routes,{useHash:true,enableTracing:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
