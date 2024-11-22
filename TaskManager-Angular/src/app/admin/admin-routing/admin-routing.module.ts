@@ -12,10 +12,10 @@ const routes: Routes = [
 
   {
       path: "admin", canActivate: [canActivateGuard], data: { expectedRoles: "Admin" }, children: [
-          { path: "dashboard", component: DashboardComponent, },
-          { path: "projects", component: ProjectsComponent },
-          { path: "projects/view/:projectid", component: ProjectDetailsComponent },
-          { path: "myProfile", component: MyProfileComponent }
+          { path: "dashboard", component: DashboardComponent, data: { linkIndex: 0 }},
+          { path: "projects", component: ProjectsComponent,data: { linkIndex: 1 } },
+          { path: "projects/view/:projectid", component: ProjectDetailsComponent,data: { linkIndex: 2 } },
+          { path: "myProfile", component: MyProfileComponent,data: { linkIndex: 3 } }
 
       ]
   },

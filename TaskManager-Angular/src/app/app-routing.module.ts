@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { AboutComponent } from './User/about/about.component';
+import { AboutComponent } from './about/about.component';
 import { MyProfileComponent } from './admin/my-profile/my-profile.component';
 import {LoginComponent  } from "./login/login.component";
 import {ProjectsComponent  } from "./admin/projects/projects.component";
@@ -13,9 +13,9 @@ import { ProjectDetailsComponent } from './admin/project-details/project-details
 import { CanDeactiveGuardService } from './can-deactive-guard.service';
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
-  { path: "login", component: LoginComponent },
-  { path: "signup", component: SignUpComponent ,canDeactivate:[CanDeactiveGuardService]},
-
+  { path: "login", component: LoginComponent,data: { linkIndex: 2 } },
+  { path: "signup", component: SignUpComponent ,canDeactivate:[CanDeactiveGuardService],data: { linkIndex: 3 }},
+  {path:"about",component:AboutComponent,data: { linkIndex: 1 }}
   // {
   //   path: "admin", canActivate: [canActivateGuard], data: { expectedRoles: ["Admin","SuperUser" ]}, children: [
   //     { path: "dashboard", component: DashboardComponent, },
