@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       {
         localStorage["token"] = response.token;
         //this.notificationService.showSuccess("otp sended to registerd mail please check")
-        this.routerService.navigate(["/User", "about"]);
+        this.routerService.navigate(["/User", "tasks"]);
         // this.toast.success("logged in..!")
       },
         (error) =>
