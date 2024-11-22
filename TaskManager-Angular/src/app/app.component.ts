@@ -2,12 +2,14 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LoginService } from './Services/login.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RouterLoggerService } from './router-logger.service';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { fadeAnimation } from './my_Animation';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  animations:[fadeAnimation]
 })
 export class AppComponent  implements OnInit {
   constructor(public loginService: LoginService,private sanitizer: DomSanitizer,private routerLoggerService: RouterLoggerService, private router: Router)
@@ -44,5 +46,9 @@ export class AppComponent  implements OnInit {
   onSearchClick() {
     console.log('Search clicked for user:', this.loginService.currentUserName);
     // Implement search functionality here
+  }
+  
+  getState(outlet: RouterOutlet) {
+    return outlet.isActivated ? outlet.activatedRoute.snapshot.url[0].path : "none";
   }
 }

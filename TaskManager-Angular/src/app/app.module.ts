@@ -27,6 +27,7 @@ import { UserModule } from './User/user/user.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MatSnackBarModule,
     AdminModule,
