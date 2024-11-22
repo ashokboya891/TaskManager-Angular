@@ -3,13 +3,13 @@ import { LoginService } from './Services/login.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RouterLoggerService } from './router-logger.service';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { fadeAnimation } from './my_Animation';
+import { fadeAnimation, slideUpAnimation } from './my_Animation';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations:[fadeAnimation]
+  animations:[slideUpAnimation]
 })
 export class AppComponent  implements OnInit {
   constructor(public loginService: LoginService,private sanitizer: DomSanitizer,private routerLoggerService: RouterLoggerService, private router: Router)
@@ -30,15 +30,15 @@ export class AppComponent  implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         let userName = (this.loginService.currentUserName) ? this.loginService.currentUserName : "anonymous";
-
+        const user = JSON.parse(userName);
+        this.loginService.currentUserName = user.email;
         let logMsg = new Date().toLocaleString() + ": " + userName + " navigates to " + event.url;
 
         this.routerLoggerService.log(logMsg).subscribe();
       }
-      if (currentUser) {
-        const user = JSON.parse(currentUser);
-        this.loginService.currentUserName = user.email; // or however you want to store the username
-      }
+      // if (currentUser) {
+      //  // or however you want to store the username
+      // }
     });
   
   }
