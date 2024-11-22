@@ -6,7 +6,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { NotificationService } from './NotificationService';
 
 export const canActivateGuard: CanActivateFn = (route, state) => {
-  
+
   const loginService = inject(LoginService);
   const router = inject(Router);
   const jwtHelperService = inject(JwtHelperService);

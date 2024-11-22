@@ -18,6 +18,7 @@ export class SignUpComponent implements OnInit{
   countries: Country[] = [];
   registerError: string | null = null;
 
+  canLeave: boolean = true;
 
   constructor(private countriesService: CountriesService,private formBuilder:FormBuilder,private customValidatorService:CustomValidatorsService
     ,private loginService:LoginService,private router:Router
@@ -49,10 +50,12 @@ export class SignUpComponent implements OnInit{
     },{
       validators: [
         this.customValidatorService.compareValidator("confirmPassword", "password")
-      ]
+      ],
+    
     });
     this.signUpForm.valueChanges.subscribe((value: any) =>
       {
+        this.canLeave = false;
         //console.log(value);
       });
       
@@ -101,6 +104,7 @@ export class SignUpComponent implements OnInit{
       this.loginService.Register(signUpViewModel).subscribe(
         (response) =>
         {
+          this.canLeave = true;
           localStorage["token"] = response.token;
           this.router.navigate(["tasks"]);
         },

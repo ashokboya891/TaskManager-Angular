@@ -10,10 +10,11 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { TasksComponent } from './User/tasks/tasks.component';
 import { Login2fcComponent } from './login2fc/login2fc.component';
 import { ProjectDetailsComponent } from './admin/project-details/project-details.component';
+import { CanDeactiveGuardService } from './can-deactive-guard.service';
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "login", component: LoginComponent },
-  { path: "signup", component: SignUpComponent },
+  { path: "signup", component: SignUpComponent ,canDeactivate:[CanDeactiveGuardService]},
 
   // {
   //   path: "admin", canActivate: [canActivateGuard], data: { expectedRoles: ["Admin","SuperUser" ]}, children: [
