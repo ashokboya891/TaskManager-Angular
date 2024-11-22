@@ -3,13 +3,13 @@ import { LoginService } from './Services/login.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RouterLoggerService } from './router-logger.service';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { fadeAnimation, slideUpAnimation, zoomUpAnimation } from './my_Animation';
+import { fadeAnimation, slideUpAnimation, zoomLeftAnimation, zoomUpAnimation } from './my_Animation';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations:[zoomUpAnimation]
+  animations:[zoomLeftAnimation]
 })
 export class AppComponent  implements OnInit {
   constructor(public loginService: LoginService,private sanitizer: DomSanitizer,private routerLoggerService: RouterLoggerService, private router: Router)
