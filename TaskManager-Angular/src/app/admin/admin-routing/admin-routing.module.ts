@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { canActivateGuard } from 'src/app/can-activate.guard';
-import { DashboardComponent } from '../dashboard/dashboard.component';
-import { ProjectsComponent } from '../projects/projects.component';
-import { ProjectDetailsComponent } from '../project-details/project-details.component';
-import { MyProfileComponent } from '../my-profile/my-profile.component';
+import { canActivateGuard } from 'src/app/Guards/can-activate.guard';
+import { DashboardComponent } from '../Components/dashboard/dashboard.component';
+import { ProjectsComponent } from '../Components/projects/projects.component';
+import { ProjectDetailsComponent } from '../Components/project-details/project-details.component';
+import { MyProfileComponent } from '../Components/my-profile/my-profile.component';
 
 
 const routes: Routes = [

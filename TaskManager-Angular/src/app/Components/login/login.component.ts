@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { User } from '../User';
-import { LoginViewModel } from '../login-view-model';
-import { LoginService } from '../Services/login.service';
+import { User } from '../../Models/User';
+import { LoginViewModel } from '../../Models/login-view-model';
+import { LoginService } from '../../Services/login.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrService } from 'ngx-toastr';
-import { NotificationService } from '../NotificationService';
+import { NotificationService } from '../../Services/NotificationService';
 
 @Component({
   selector: 'app-login',

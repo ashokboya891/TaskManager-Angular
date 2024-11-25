@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ClientLocation } from './client-location';
+import { ClientLocation } from '../Models/client-location';
 import { Observable } from 'rxjs';
 
 @Injectable({

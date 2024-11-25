@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams  } from "@angular/common/http";
-import { Project } from '../project';
+import { Project } from '../Models/project';
 import { BehaviorSubject, catchError, map, Observable, Observer, of, Subject, throwError } from 'rxjs';
-import { NotificationService } from '../NotificationService';
+import { NotificationService } from './NotificationService';
 @Injectable({
   providedIn: 'root'
 })

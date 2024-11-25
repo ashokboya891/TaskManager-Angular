@@ -5,18 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './Components/login/login.component';
 import { FormsModule,ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar'; // Ensure this is imported
-import { JwtInterceptorService } from './jwt-interceptor.service';
-import { JwtUnAuthorizedInterceptorService } from './jwt-un-authorized-interceptor.service';
+import { JwtInterceptorService } from './Interceptors/jwt-interceptor.service';
+import { JwtUnAuthorizedInterceptorService } from './Interceptors/jwt-un-authorized-interceptor.service';
 import { ToastrModule } from "ngx-toastr";
-import { ClientLocationStatusValidatorDirective } from './client-location-status-validator.directive';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { AlertDirective } from './alert.directive';
-import { RepeaterDirective } from './repeater.directive';
-import { UserModule } from './User/user/user.module';
+import { ClientLocationStatusValidatorDirective } from './Directives/client-location-status-validator.directive';
+import { SignUpComponent } from './Components/sign-up/sign-up.component';
+import { AlertDirective } from './Directives/alert.directive';
+import { RepeaterDirective } from './Directives/repeater.directive';
+import { UserModule } from './User/user.module';
+import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,12 +31,10 @@ import { UserModule } from './User/user/user.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     MatSnackBarModule,
-    AdminModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
+    SharedModule,
+    UserModule,AdminModule,
     BrowserAnimationsModule,
-    UserModule,
+    
     JwtModule.forRoot({
       config: {
         tokenGetter: () =>

@@ -1,9 +1,9 @@
 import { inject } from '@angular/core';
 import { CanActivateFn } from '@angular/router';
-import { LoginService } from './Services/login.service';
+import { LoginService } from '../Services/login.service';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { NotificationService } from './NotificationService';
+import { NotificationService } from '../Services/NotificationService';
 
 export const canActivateGuard: CanActivateFn = (route, state) => {
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Login2FA } from '../login2-fa';
-import { LoginService } from '../Services/login.service';
+import { Login2FA } from '../../Models/login2-fa';
+import { LoginService } from '../../Services/login.service';
 import { Router } from '@angular/router';
-import { NotificationService } from '../NotificationService';
+import { NotificationService } from '../../Services/NotificationService';
 
 @Component({
   selector: 'app-login2fc',

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { LoginViewModel } from '../login-view-model';
-import { User } from '../User';
+import { LoginViewModel } from '../Models/login-view-model';
+import { User } from '../Models/User';
 import { HttpBackend, HttpClient } from '@angular/common/http';
 import { JwtHelperService  } from "@auth0/angular-jwt";
-import { RegisterViewModel } from '../register-view-model';
-import { Login2FA } from '../login2-fa';
+import { RegisterViewModel } from '../Models/register-view-model';
+import { Login2FA } from '../Models/login2-fa';
 @Injectable({
   providedIn: 'root'
 })

@@ -1,7 +1,7 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { NotificationService } from './NotificationService';
+import { NotificationService } from '../Services/NotificationService';
 
 @Injectable({
   providedIn: 'root'

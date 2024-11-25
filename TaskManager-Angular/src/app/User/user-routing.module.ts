@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { canActivateGuard } from 'src/app/can-activate.guard';
-import { TasksComponent } from '../tasks/tasks.component';
+import { canActivateGuard } from 'src/app/Guards/can-activate.guard';
+import { TasksComponent } from './Components/tasks/tasks.component';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from '../../about/about.component';
+import { AboutComponent } from '../about/about.component';
 
 
 const routes: Routes = [

@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { canActivateGuard } from 'src/app/can-activate.guard';
-import { TasksComponent } from '../tasks/tasks.component';
+import { canActivateGuard } from 'src/app/Guards/can-activate.guard';
+import { TasksComponent } from './Components/tasks/tasks.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserRoutingModule } from '../user-routing/user-routing.module';
+import { UserRoutingModule } from './user-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     TasksComponent
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+   SharedModule,
     UserRoutingModule
   ],
   exports:

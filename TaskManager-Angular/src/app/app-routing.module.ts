@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { DashboardComponent } from './admin/Components/dashboard/dashboard.component';
 import { AboutComponent } from './about/about.component';
-import { MyProfileComponent } from './admin/my-profile/my-profile.component';
-import {LoginComponent  } from "./login/login.component";
-import {ProjectsComponent  } from "./admin/projects/projects.component";
-import { canActivateGuard } from './can-activate.guard';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { TasksComponent } from './User/tasks/tasks.component';
-import { Login2fcComponent } from './login2fc/login2fc.component';
-import { ProjectDetailsComponent } from './admin/project-details/project-details.component';
-import { CanDeactiveGuardService } from './can-deactive-guard.service';
+import { MyProfileComponent } from './admin/Components/my-profile/my-profile.component';
+import {LoginComponent  } from "./Components/login/login.component";
+import {ProjectsComponent  } from "./admin/Components/projects/projects.component";
+import { canActivateGuard } from './Guards/can-activate.guard';
+import { SignUpComponent } from './Components/sign-up/sign-up.component';
+import { TasksComponent } from './User/Components/tasks/tasks.component';
+import { Login2fcComponent } from './Components/login2fc/login2fc.component';
+import { ProjectDetailsComponent } from './admin/Components/project-details/project-details.component';
+import { CanDeactiveGuardService } from './Guards/can-deactive-guard.service';
 const routes: Routes = [
   { path: "", redirectTo: "login", pathMatch: "full" },
   { path: "login", component: LoginComponent,data: { linkIndex: 2 } },

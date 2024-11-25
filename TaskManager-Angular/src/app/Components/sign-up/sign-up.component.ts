@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Country } from '../country';
-import { CountriesService } from '../countries.service';
-import { CustomValidatorsService } from '../Services/custom-validators.service';
-import { LoginService } from '../Services/login.service';
-import { RegisterViewModel } from '../register-view-model';
+import { Country } from '../../Models/country';
+import { CountriesService } from '../../Services/countries.service';
+import { CustomValidatorsService } from '../../Services/custom-validators.service';
+import { LoginService } from '../../Services/login.service';
+import { RegisterViewModel } from '../../Models/register-view-model';
 import { Router } from '@angular/router';
 
 @Component({
