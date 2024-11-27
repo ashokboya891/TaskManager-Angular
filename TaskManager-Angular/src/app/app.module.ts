@@ -32,7 +32,7 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     MatSnackBarModule,
     SharedModule,
-    UserModule,AdminModule,
+    UserModule,
     BrowserAnimationsModule,
     
     JwtModule.forRoot({

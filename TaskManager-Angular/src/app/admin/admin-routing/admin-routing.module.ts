@@ -11,7 +11,7 @@ import { MyProfileComponent } from '../Components/my-profile/my-profile.componen
 const routes: Routes = [
 
   {
-      path: "admin", canActivate: [canActivateGuard], data: { expectedRoles: "Admin" }, children: [
+      path: "", canActivate: [canActivateGuard], data: { expectedRoles: "Admin" }, children: [
           { path: "dashboard", component: DashboardComponent, data: { linkIndex: 0 }},
           { path: "projects", component: ProjectsComponent,data: { linkIndex: 1 } },
           { path: "projects/view/:projectid", component: ProjectDetailsComponent,data: { linkIndex: 2 } },
