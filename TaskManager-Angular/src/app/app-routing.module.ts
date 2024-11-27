@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './admin/Components/dashboard/dashboard.component';
 import { AboutComponent } from './about/about.component';
 import { MyProfileComponent } from './admin/Components/my-profile/my-profile.component';
@@ -82,7 +82,7 @@ const routes: Routes = [
  
 // ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash:true,enableTracing:true})],
+  imports: [RouterModule.forRoot(routes,{useHash:true,enableTracing:true,preloadingStrategy:PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
