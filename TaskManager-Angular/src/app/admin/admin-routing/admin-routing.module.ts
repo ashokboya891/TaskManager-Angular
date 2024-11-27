@@ -6,6 +6,7 @@ import { DashboardComponent } from '../Components/dashboard/dashboard.component'
 import { ProjectsComponent } from '../Components/projects/projects.component';
 import { ProjectDetailsComponent } from '../Components/project-details/project-details.component';
 import { MyProfileComponent } from '../Components/my-profile/my-profile.component';
+import { MastersComponent } from '../Components/masters/masters.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
           { path: "dashboard", component: DashboardComponent, data: { linkIndex: 0 }},
           { path: "projects", component: ProjectsComponent,data: { linkIndex: 1 } },
           { path: "projects/view/:projectid", component: ProjectDetailsComponent,data: { linkIndex: 2 } },
-          { path: "myProfile", component: MyProfileComponent,data: { linkIndex: 3 } }
+          { path: "myProfile", component: MyProfileComponent,data: { linkIndex: 3 } },
+          { path: "masters", component: MastersComponent, data: { linkIndex: 4 } },
 
       ]
   },

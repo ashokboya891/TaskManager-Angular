@@ -18,6 +18,7 @@ import { AlertDirective } from './Directives/alert.directive';
 import { RepeaterDirective } from './Directives/repeater.directive';
 import { UserModule } from './User/user.module';
 import { SharedModule } from './shared/shared.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { SharedModule } from './shared/shared.module';
     SignUpComponent,
     AlertDirective,
     RepeaterDirective,
+  
   ],
   imports: [
     BrowserModule,

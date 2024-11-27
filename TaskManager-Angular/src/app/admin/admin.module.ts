@@ -9,7 +9,11 @@ import { CheckBoxPrinterComponent } from './Components/check-box-printer/check-b
 import { ProjectDetailsComponent } from './Components/project-details/project-details.component';
 import { AdminRoutingModule } from './admin-routing/admin-routing.module';
 import { SharedModule } from '../shared/shared.module';
-
+import { CountriesComponent } from './Components/countries/countries.component';
+import { ClientLocationsComponent } from './Components/client-locations/client-locations.component';
+import { TaskPrioritiesComponent } from './Components/task-priorities/task-priorities.component';
+import { TaskStatusComponent } from './Components/task-status/task-status.component';
+import { MastersComponent } from './Components/masters/masters.component';
 @NgModule({
   declarations: [
     AboutComponent,
@@ -19,7 +23,13 @@ import { SharedModule } from '../shared/shared.module';
     ProjectComponent,
     DashboardComponent,
     CheckBoxPrinterComponent,
-    ProjectDetailsComponent
+    ProjectDetailsComponent,
+    CountriesComponent,
+    ClientLocationsComponent,
+    TaskPrioritiesComponent,
+    TaskStatusComponent,
+    MastersComponent
+
   ],
   imports: [SharedModule, AdminRoutingModule],
   exports: [
