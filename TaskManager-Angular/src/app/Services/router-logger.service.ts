@@ -15,6 +15,7 @@ export class RouterLoggerService {
   }
 
   public log(logMsg: string): Observable<any> {
+    debugger
     this.httpClient = new HttpClient(this.httpBackend);
     return this.httpClient.post(this.urlPrefix + "/api/RouterLogger/api/routerlogger/", { log: logMsg },
       //{ headers: new HttpHeaders().set("content-type", "text/plain") }

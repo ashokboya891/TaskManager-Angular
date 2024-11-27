@@ -26,20 +26,33 @@ export class AppComponent  implements OnInit {
   ngOnInit() {
 
     const currentUser = sessionStorage.getItem('currentUser');
-  
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         let userName = (this.loginService.currentUserName) ? this.loginService.currentUserName : "anonymous";
-        const user = JSON.parse(userName);
-        this.loginService.currentUserName = user.email;
         let logMsg = new Date().toLocaleString() + ": " + userName + " navigates to " + event.url;
-
         this.routerLoggerService.log(logMsg).subscribe();
       }
-      // if (currentUser) {
-      //  // or however you want to store the username
-      // }
+      if (currentUser) {
+        const user = JSON.parse(currentUser);
+        this.loginService.currentUserName = user.email; // or however you want to store the username
+      }
     });
+  
+    // this.router.events.subscribe((event) => {
+    //   if (event instanceof NavigationEnd) {
+    //     let userName = (this.loginService.currentUserName) ? this.loginService.currentUserName : "anonymous";
+    //     const user = JSON.parse(userName);
+    //     this.loginService.currentUserName = user.email;
+    //     let logMsg = new Date().toLocaleString() + ": " + userName + " navigates to " + event.url;
+
+    //     this.routerLoggerService.log(logMsg).subscribe();
+    //   }
+    //   if (currentUser) {
+    //     const user = JSON.parse(currentUser);
+    //     this.loginService.currentUserName = user.email;
+    //    // or however you want to store the username
+    //   }
+    // });
   
   }
 
