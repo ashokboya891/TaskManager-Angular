@@ -30,7 +30,6 @@ export class MastersComponent  implements OnInit {
   }
 
   menuItemClick(clickedMasterMenuItem: any) {
-    debugger
     //console.log(clickedMasterMenuItem);
     this.activeItem = clickedMasterMenuItem.itemName;
 
@@ -50,7 +49,14 @@ export class MastersComponent  implements OnInit {
         var componentFactory = this.componentFactoryResolver.resolveComponentFactory(clickedMasterMenuItem.component);
 
         var viewContainterRef = componentLoadersArray[this.tabs.length - 1].viewContainerRef;
-        viewContainterRef.createComponent(componentFactory);
+        debugger
+
+        var componentRef = viewContainterRef.createComponent(componentFactory);
+
+        if (clickedMasterMenuItem.component.name == "CountriesComponent") {
+          var componentInstance = componentRef.instance as CountriesComponent;
+          componentInstance.message = "Hello to Countries";
+        }
       }, 100);
     }
 
