@@ -8,6 +8,7 @@ import { FilterPipe } from '../Pipes/filter.pipe';
 import { PagingPipe } from '../Pipes/paging.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ComponentLoaderDirective } from '../Directives/component-loader.directive';
 
 
 
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProjectIDUniqueValidatorDirective,
     NumberTowardsPipe,
     FilterPipe,
-    PagingPipe
+    PagingPipe,
+    ComponentLoaderDirective
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
+
+
+    ComponentLoaderDirective,
     TeamSizeValidatorDirective,
     ClientLocationStatusValidatorDirective,
     ProjectIDUniqueValidatorDirective,

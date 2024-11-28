@@ -26,6 +26,7 @@ import { SharedModule } from './shared/shared.module';
     SignUpComponent,
     AlertDirective,
     RepeaterDirective,
+    
   
   ],
   imports: [

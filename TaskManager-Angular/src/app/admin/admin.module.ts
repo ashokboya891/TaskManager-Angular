@@ -14,6 +14,7 @@ import { ClientLocationsComponent } from './Components/client-locations/client-l
 import { TaskPrioritiesComponent } from './Components/task-priorities/task-priorities.component';
 import { TaskStatusComponent } from './Components/task-status/task-status.component';
 import { MastersComponent } from './Components/masters/masters.component';
+
 @NgModule({
   declarations: [
     AboutComponent,
@@ -28,7 +29,8 @@ import { MastersComponent } from './Components/masters/masters.component';
     ClientLocationsComponent,
     TaskPrioritiesComponent,
     TaskStatusComponent,
-    MastersComponent
+    MastersComponent,
+
 
   ],
   imports: [SharedModule, AdminRoutingModule],
@@ -41,6 +43,12 @@ import { MastersComponent } from './Components/masters/masters.component';
     CheckBoxPrinterComponent,
     ProjectDetailsComponent,
   ],
-  providers: [DashboardComponent]
+  providers: [DashboardComponent],
+  // entryComponents: [
+  //   CountriesComponent,
+  //   ClientLocationsComponent,
+  //   TaskPrioritiesComponent,
+  //   TaskStatusComponent
+  // ]
 })
 export class AdminModule { }
