@@ -39,6 +39,9 @@ export class CountriesComponent  implements OnInit{
     @ViewChild("defaultTextBox_New") defaultTextBox_New: ElementRef | any = null;
     @ViewChild("defaultTextBox_Edit") defaultTextBox_Edit: ElementRef | any = null;
   
+     //Sorting
+  sortBy: string = "countryName";
+  sortOrder: string = "ASC"; //ASC | DESC
     //Constructor
     constructor(private countriesService: CountriesService, private formBuilder: FormBuilder) {
     }
@@ -96,31 +99,31 @@ export class CountriesComponent  implements OnInit{
       }, 100);
     }
     onSaveClick() {
-      if (this.newForm.valid) {
-        const newCountry = {
-          countryName: this.newForm.value.countryName, // Only send countryName
-        };
-    
-        // Invoke the REST-API call
-        this.countriesService.insertCountry(newCountry).subscribe(
-          (response) => {
-            // Add Response to Grid
-            const p: Country = new Country();
-            p.countryName = response.countryName;
-            this.countries.push(p);
-    
-            // Reset the newForm
-            this.newForm.reset();
-            $("#newCountryFormCancel").trigger("click");
-            this.calculateNoOfPages();
-          },
-          (error) => {
-            console.error('Error:', error);
-          }
-        );
+  if (this.newForm.valid) {
+    const newCountry = {
+      countryName: this.newForm.value.countryName, // Only send countryName
+    };
+
+    // Invoke the REST-API call
+    this.countriesService.insertCountry(newCountry).subscribe(
+      (response) => {
+        // Add Response to Grid
+        const p: Country = new Country();
+        p.countryName = response.countryName;
+        this.countries.push(p);
+
+        // Reset the newForm
+        this.newForm.reset();
+        $("#newCountryFormCancel").trigger("click");
+        this.calculateNoOfPages();
+      },
+      (error) => {
+        console.error('Error:', error);
       }
-    }
-    
+    );
+  }
+}
+
     
     // onSaveClick() {
     //   if (this.newForm.valid) {
