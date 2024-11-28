@@ -49,7 +49,7 @@ export class MastersComponent  implements OnInit {
         var componentFactory = this.componentFactoryResolver.resolveComponentFactory(clickedMasterMenuItem.component);
 
         var viewContainterRef = componentLoadersArray[this.tabs.length - 1].viewContainerRef;
-        debugger
+        
 
         var componentRef = viewContainterRef.createComponent(componentFactory);
 
@@ -61,4 +61,28 @@ export class MastersComponent  implements OnInit {
     }
 
   }
+  onCloseClick(clickedTab: any) {
+    console.log(clickedTab);
+    
+    if (clickedTab.viewContainerRef) {
+      clickedTab.viewContainerRef.remove();
+    } else {
+      console.warn('viewContainerRef is undefined for the clicked tab.');
+    }
+    
+    this.tabs.splice(this.tabs.indexOf(clickedTab), 1);
+    
+    if (this.tabs.length > 0) {
+      this.activeItem = this.tabs[0].itemName;
+    }
+  }
+  
+  // onCloseClick(clickedTab: any) {
+  //   console.log(clickedTab)
+  //   clickedTab.viewContainerRef.remove();
+  //   this.tabs.splice(this.tabs.indexOf(clickedTab), 1);
+  //   if (this.tabs.length > 0) {
+  //     this.activeItem = this.tabs[0].itemName;
+  //   }
+  // }
 }
