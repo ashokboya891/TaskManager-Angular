@@ -7,7 +7,7 @@ import { Project } from '../Models/project';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(value: Project[] | any, searchBy: string, searchText: string): any
+  transform(value: any[] | any, searchBy: string, searchText: string): any
   {
     if (value == null)
     {
