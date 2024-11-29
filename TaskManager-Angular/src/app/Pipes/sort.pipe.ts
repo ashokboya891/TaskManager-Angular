@@ -7,6 +7,7 @@ export class SortPipe implements PipeTransform {
 
   transform(value: any[], sortBy: string, sortOrder: string): any
   {
+    // debugger
     if (value == null)
     {
       return null;
