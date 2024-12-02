@@ -13,7 +13,10 @@ export class LoginService {
 
   url:string="https://localhost:7018/api/Account";
   currentUserName:any=null;
+  currentUserRole: string |null |undefined;
+
   private httpClient:HttpClient|null=null;
+
   constructor(private httpbackend:HttpBackend,private jwtHelperService:JwtHelperService) { }
   
   public Login(login: LoginViewModel): Observable<any> {
@@ -23,6 +26,8 @@ export class LoginService {
         if (user) {
          
               this.currentUserName = user.email;
+              this.currentUserRole = user.role
+              console.log(this.currentUserRole+"from login service");
               console.log(this.currentUserName+"in login servcie");
               localStorage.setItem("token", user.token);
               sessionStorage['currentUser'] = JSON.stringify(user);

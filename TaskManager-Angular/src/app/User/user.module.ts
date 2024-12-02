@@ -6,10 +6,16 @@ import { TasksComponent } from './Components/tasks/tasks.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserRoutingModule } from './user-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { EditTaskComponent } from './Components/edit-task/edit-task.component';
+import { CreateTaskComponent } from './Components/create-task/create-task.component';
+import { UpdateTaskStatusComponent } from './Components/update-task-status/update-task-status.component';
 
 @NgModule({
   declarations: [
-    TasksComponent
+    TasksComponent,
+    EditTaskComponent,
+    CreateTaskComponent,
+    UpdateTaskStatusComponent
   ],
   imports: [
    SharedModule,
@@ -17,7 +23,10 @@ import { SharedModule } from '../shared/shared.module';
   ],
   exports:
   [
-    TasksComponent
+    TasksComponent,
+    EditTaskComponent,
+    CreateTaskComponent,
+    UpdateTaskStatusComponent
   ]
 })
 export class UserModule { }

@@ -62,6 +62,7 @@ export class ProjectsComponent implements AfterViewInit {
   }
   
   ngAfterViewInit() {
+    
     setTimeout(() => {
       console.log("Project components:", this.prj.toArray()); // Verify all components are initialized
     });

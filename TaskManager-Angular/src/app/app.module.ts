@@ -18,6 +18,7 @@ import { AlertDirective } from './Directives/alert.directive';
 import { RepeaterDirective } from './Directives/repeater.directive';
 import { UserModule } from './User/user.module';
 import { SharedModule } from './shared/shared.module';
+import { TaskStatusComponent } from './task-status/task-status.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,7 @@ import { SharedModule } from './shared/shared.module';
     SignUpComponent,
     AlertDirective,
     RepeaterDirective,
-    
-    
-  
+    TaskStatusComponent,
   ],
   imports: [
     BrowserModule,

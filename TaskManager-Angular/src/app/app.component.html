@@ -6,52 +6,48 @@
       <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="mynav">
-      <ul class="navbar-nav mr-auto">
-          <li class="nav-item" *ngIf="loginService.currentUserName != null">
-            <!-- <a class="nav-link" routerLink="admin/dashboard">Dashboard</a> -->
+    <ul class="navbar-nav mr-auto">
 
-              <a class="nav-link" [routerLink]="['admin','dashboard']">Dashboard</a>
-          </li>
-          <li class="nav-item" *ngIf="loginService.currentUserName != null">
-            <a class="nav-link" [routerLink]="['admin','projects']">Projects</a>
-        </li>
-        <li class="nav-item" *ngIf="loginService.currentUserName != null">
-          <a class="nav-link" [routerLink]=" [ '/admin', 'masters' ] ">Masters</a>
-      </li>
-          <li class="nav-item" *ngIf="loginService.currentUserName != null">
-            <a class="nav-link" [routerLink]="['admin','myProfile']"  >Admin</a>
-         </li>
-         <li class="nav-item">
-            <a class="nav-link"  [routerLink]="['about']" >About</a>
-        </li>
-     
-         <li class="nav-item" *ngIf="loginService.currentUserName != null">
-            <a class="nav-link" [routerLink]="['User','tasks']">Tasks</a>
-        </li>
-          <li class="nav-item" *ngIf="loginService.currentUserName != null">
-              <a class="nav-link" >{{loginService.currentUserName}}</a>
-          </li>
-         
-          <li class="nav-item" *ngIf="loginService.currentUserName != null">
-              <a class="nav-link" href="#" (click)="loginService.Logout()">Logout</a>
-          </li>
-          <!-- <li>
-            {{mytest}}   
-            {{mytest1}}   
+        <ng-container *ngIf="loginService.currentUserName != null && loginService.currentUserRole == 'Admin'">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]=" [ '/admin', 'dashboard' ] ">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]=" [ '/admin', 'projects' ] ">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]=" [ '/admin', 'masters' ] ">Masters</a>
+            </li>
+        </ng-container>
 
-        sanitization example above word dynamic once consider by angular is untrusted one
-          </li>
-          <li class="nav-item">
-              <a href="#" [innerHTML]="mytest2">Hello</a>
-          </li> -->
-          <li class="nav-item" *ngIf="loginService.currentUserName == null">
-            <a class="nav-link" routerLink="signup">Sign-Up</a>
+        <ng-container *ngIf="loginService.currentUserName != null && loginService.currentUserRole == 'User'">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]=" [ '/User', 'tasks' ] ">Tasks</a>
+            </li>
+        </ng-container>
 
-          </li>
-          <li class="nav-item" *ngIf="loginService.currentUserName == null">
-              <a class="nav-link" routerLink="login">Login</a>
-          </li>
-      </ul>
+        <ng-container *ngIf="loginService.currentUserName == null">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]=" [ '/login' ] ">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]=" [ '/signup' ] ">Sign Up</a>
+            </li>
+        </ng-container>
+
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]=" [ '/about' ] ">About</a>
+        </li>
+
+        <ng-container *ngIf="loginService.currentUserName != null">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]=" [ '/myprofile' ] ">{{loginService.currentUserName}}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" (click)="loginService.Logout()">Logout</a>
+            </li>
+        </ng-container>
+    </ul>
       <form class="form-inline my-2 my-lg-0">
           <div class="input-group">
               <div class="input-group-prepend">

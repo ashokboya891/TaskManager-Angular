@@ -8,9 +8,15 @@ import { NotificationService } from '../Services/NotificationService';
 })
 export class JwtUnAuthorizedInterceptorService implements HttpInterceptor{
 
-  constructor(private notification:NotificationService) { }
+  constructor(private notification:NotificationService) {
+    
+   }
+  
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    console.log('Request intercepted:', request);
+
     return next.handle(request).pipe(tap(
+      
 
       (event: HttpEvent<any>) =>
       {
@@ -24,6 +30,7 @@ export class JwtUnAuthorizedInterceptorService implements HttpInterceptor{
       {
         if (error instanceof HttpErrorResponse)
         {
+
           if (error.status == 401)
           {
             console.log(error);
