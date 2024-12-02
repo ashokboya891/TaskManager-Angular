@@ -12,32 +12,75 @@ import { Login2FA } from '../Models/login2-fa';
 export class LoginService {
 
   url:string="https://localhost:7018/api/Account";
-  currentUserName:any=null;
-  currentUserRole: string |null |undefined;
+  currentUserName: string | null = null;
+  currentUserRole: string | null = null;
+  private httpClient: HttpClient | null = null;
+  // private url = 'http://localhost:5114/api'; // Update as per your API URL
 
-  private httpClient:HttpClient|null=null;
+  constructor(private httpbackend: HttpBackend, private jwtHelperService: JwtHelperService) {
+    // Initialize from session storage
+    const user = sessionStorage.getItem('currentUser');
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      this.currentUserName = parsedUser.email;
+      this.currentUserRole = parsedUser.roles[0];
+    }
+  }
 
-  constructor(private httpbackend:HttpBackend,private jwtHelperService:JwtHelperService) { }
-  
-  public Login(login: LoginViewModel): Observable<any> {
+  public Login(login: any): Observable<any> {
     this.httpClient = new HttpClient(this.httpbackend);
     return this.httpClient.post<any>(`${this.url}/Login`, login, { responseType: 'json' }).pipe(
-      map(user => {
+      map((user) => {
         if (user) {
-         
-              this.currentUserName = user.email;
-              this.currentUserRole = user.role
-              console.log(this.currentUserRole+"from login service");
-              console.log(this.currentUserName+"in login servcie");
-              localStorage.setItem("token", user.token);
-              sessionStorage['currentUser'] = JSON.stringify(user);
-            
-       // Assuming you store a token
+          this.currentUserName = user.email;
+          this.currentUserRole = user.roles[0]; // Assuming roles is an array
+          console.log(this.currentUserRole+"from login service mowa")
+          localStorage.setItem('token', user.token);
+          sessionStorage.setItem('currentUser', JSON.stringify(user));
         }
         return user;
       })
     );
   }
+
+  public Logout(): void {
+    this.currentUserName = null;
+    this.currentUserRole = null;
+    localStorage.removeItem('token');
+    sessionStorage.removeItem('currentUser');
+  }
+
+  // public isAuthenticated(): boolean {
+  //   const token = localStorage.getItem('token');
+  //   return token != null && !this.isTokenExpired(token);
+  // }
+
+  // currentUserName:any=null;
+  // currentUserRole: any= null;
+
+  // private httpClient:HttpClient|null=null;
+
+  // constructor(private httpbackend:HttpBackend,private jwtHelperService:JwtHelperService) { }
+  
+  // public Login(login: LoginViewModel): Observable<any> {
+  //   this.httpClient = new HttpClient(this.httpbackend);
+  //   return this.httpClient.post<any>(`${this.url}/Login`, login, { responseType: 'json' }).pipe(
+  //     map(user => {
+  //       if (user) {
+         
+  //             this.currentUserName = user.email;
+  //             this.currentUserRole = user.role
+  //             console.log(this.currentUserRole+"from login service");
+  //             console.log(this.currentUserName+"in login servcie");
+  //             localStorage.setItem("token", user.token);
+  //             sessionStorage['currentUser'] = JSON.stringify(user);
+            
+  //      // Assuming you store a token
+  //       }
+  //       return user;
+  //     })
+  //   );
+  // }
   public Register(signUpViewModel: RegisterViewModel): Observable<any>
   {
     this.httpClient = new HttpClient(this.httpbackend);
@@ -72,11 +115,11 @@ export class LoginService {
     return this.httpClient.get<any>(this.url + "/getUserByEmail/" + Email, { responseType: "json" });
   }
 
-  public Logout() {
-    sessionStorage.removeItem("currentUser");
-    localStorage.removeItem("token");
-    this.currentUserName = null;
-  }
+  // public Logout() {
+  //   sessionStorage.removeItem("currentUser");
+  //   localStorage.removeItem("token");
+  //   this.currentUserName = null;
+  // }
   public isAuthenticated(): boolean {
     const token = localStorage.getItem("token");
     if (token && !this.jwtHelperService.isTokenExpired(token)) {
