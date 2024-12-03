@@ -4,6 +4,7 @@ import { Task } from '../Models/task';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from '../Models/User';
+import { GroupedTask } from '../Models/group-task';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,12 @@ import { User } from '../Models/User';
 export class TasksService {
 
   constructor(private httpClient: HttpClient) { }
+
+  getTasks() : Observable<GroupedTask[]>
+  {
+    return this.httpClient.get<GroupedTask[]>("https://localhost:7018/api/tasks", { responseType: "json" });
+  }
+
 
   insertTask(newTask: Task): Observable<Task | null> {  // Updated return type to include null
     const user = JSON.parse(sessionStorage['currentUser']);  // Get the current user from session storage
