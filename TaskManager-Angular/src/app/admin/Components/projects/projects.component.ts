@@ -198,6 +198,7 @@ export class ProjectsComponent implements AfterViewInit {
   
   onDeleteClick(event: any, index: number)
   {
+    index=index+(this.currentPageIndex*this.pageSize); 
     console.log(index+"from delete utton");
     this.notificationService.showWarning("are you sure..!")
     

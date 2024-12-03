@@ -19,7 +19,8 @@ import { UpdateTaskStatusComponent } from './Components/update-task-status/updat
   ],
   imports: [
    SharedModule,
-    UserRoutingModule
+    UserRoutingModule,
+    ReactiveFormsModule
   ],
   exports:
   [
