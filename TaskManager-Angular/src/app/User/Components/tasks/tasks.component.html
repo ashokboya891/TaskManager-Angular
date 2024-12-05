@@ -24,7 +24,7 @@
                     <div class="card-header">
                         #{{i + 1}} &nbsp;&nbsp; {{task.taskName}}
 
-                        <div class="badge float-right mr-1 badge-primary" style="font-size:15px">
+                        <div class="badge float-right mr-1" style="font-size:15px" [ngClass]="getTaskPriorityBadgeCssClass(task.taskPriority?.taskPriorityName)">
                             {{task.taskPriority?.taskPriorityName}}
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                                             <i class="fa fa-calendar"></i>
                                             {{taskStatusDetail?.statusUpdationDateTimeString}}
                                         </td>
-                                        <td class="text-primary">
+                                        <td class="text-primary" [ngClass]="getTaskGroupTextCssClass(taskStatusDetail?.taskStatus?.taskStatusName)">
                                             {{taskStatusDetail?.taskStatus?.taskStatusName}}
                                         </td>
                                         <td>

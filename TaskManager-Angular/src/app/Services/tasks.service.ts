@@ -15,6 +15,7 @@ export class TasksService {
 
   getTasks() : Observable<GroupedTask[]>
   {
+    
     return this.httpClient.get<GroupedTask[]>("https://localhost:7018/api/tasks", { responseType: "json" });
   }
 

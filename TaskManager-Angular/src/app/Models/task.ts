@@ -10,6 +10,29 @@ export class TaskPriority {
     }
 }
 
+export class TaskStatusDetail {
+    taskStatusDetailID: number | null;
+    taskID: number | null;
+    taskStatusID: number | null;
+    userID: string | null;
+    description: string | null;
+    statusUpdationDateTime: string | null;
+    statusUpdationDateTimeString: string | null;
+    user: any | null;
+    taskStatus:any|null;
+
+    constructor() {
+        this.taskStatusDetailID = null;
+        this.taskID = null;
+        this.taskStatusID = null;
+        this.userID = null;
+        this.description = null;
+        this.statusUpdationDateTime = null;
+        this.statusUpdationDateTimeString = null;
+        this.user = null;
+    }
+}
+
 export class Task {
     taskID: number | null;
     taskName: string | null;
@@ -19,15 +42,15 @@ export class Task {
     createdBy: string | null;
     assignedTo: string | null;
     taskPriorityID: number | null;
-    lastUpdatedOn: number | null;
-    currentStatus: number | null;
+    lastUpdatedOn: string | null;
+    currentStatus: string | null;
     currentTaskStatusID: number | null;
 
     project: Project | null;
     createdByUser: any | null;
     assignedToUser: any | null;
-    taskStatusDetails: any | null;
-    taskPriority: TaskPriority | null; // Add this property
+    taskStatusDetails: TaskStatusDetail[] | null;
+    taskPriority: TaskPriority | null;
 
     constructor() {
         this.taskID = null;
@@ -45,7 +68,7 @@ export class Task {
         this.project = null;
         this.createdByUser = null;
         this.assignedToUser = null;
-        this.taskStatusDetails = null;
-        this.taskPriority = null; // Initialize
+        this.taskStatusDetails = [];
+        this.taskPriority = null;
     }
 }
