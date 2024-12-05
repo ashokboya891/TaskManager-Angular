@@ -95,12 +95,12 @@
 
                     <div class="card-footer">
                         <div class="btn-group">
-                            <a [routerLink]=" [ '/employee', 'updatetaskstatus', task.taskID ] " class="btn btn-sm btn-outline-secondary">
+                            <a [routerLink]=" [ '/User', 'updatetaskstatus', task.taskID ] " class="btn btn-sm btn-outline-secondary">
                                 <i class="fa fa-pencil"></i>
                                 Change Status
                             </a>
 
-                            <a [routerLink]=" [ '/employee', 'edittask', task.taskID ] " class="btn btn-sm btn-outline-secondary" *ngIf="task.createdByUser?.userName == loginService.currentUserName">
+                            <a [routerLink]=" [ '/User', 'edittask', task.taskID ] " class="btn btn-sm btn-outline-secondary" *ngIf="task.createdByUser?.userName == loginService.currentUserName">
                                 <i class="fa fa-pencil-square-o"></i>
                                 Edit
                             </a>
