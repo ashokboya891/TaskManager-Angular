@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Task } from '../Models/task';
+import { Task, TaskStatusDetail } from '../Models/task';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from '../Models/User';
@@ -36,4 +36,19 @@ export class TasksService {
         })
       );
   }
+
+
+  getTaskByTaskID(TaskID: number): Observable<Task> {
+    return this.httpClient.get<Task>("https://localhost:7018/api/tasks/searchbytaskid/" + TaskID, { responseType: "json" });
+  }
+
+  updateTaskStatus(taskStatusDetail: TaskStatusDetail): Observable<TaskStatusDetail> {
+    var user = JSON.parse(sessionStorage["currentUser"]);
+    //console.log(user);
+    taskStatusDetail.userID = user.id; //add this statement to store the current user's id in the 'taskStatusDetails' table
+
+    return this.httpClient.put<TaskStatusDetail>("https://localhost:7018/api/updatetaskstatus", taskStatusDetail, { responseType: "json" });
+  }
+
+ 
 }

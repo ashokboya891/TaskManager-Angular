@@ -5,8 +5,20 @@
 
     <div class="col-lg-6 mb-1" *ngFor="let taskGroup of taskGroups">
         <div class="card card-primary">
-
-            <div class="card-header">
+            
+            <div class="card-header" [ngClass]="getTaskGroupBgCssClass(taskGroup.taskStatusName)">
+                <div class="card-title">
+                  <h4>
+                    {{taskGroup.taskStatusName}}
+                    <span class="badge badge-warning float-right">
+                      {{taskGroup.tasks?.length}}
+                    </span>
+                  </h4>
+                </div>
+              </div>
+              
+              
+            <!-- <div class="card-header" [ngClass]="getTaskGroupBgCssClass(taskGroup.taskStatusName)">
                 <div class="card-title">
                     <h4>
                         {{taskGroup.taskStatusName}}
@@ -15,7 +27,7 @@
                         </span>
                     </h4>
                 </div>
-            </div>
+            </div> -->
 
             <div class="card-body">
 
@@ -114,3 +126,4 @@
     </div>
 
 </div>
+
