@@ -3,6 +3,7 @@ import { LoginService } from './Services/login.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { fadeAnimation, keyFrameAnimation } from './my_Animation';
+import { RouterLoggerService } from './Services/router-logger.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
   constructor(
     public loginService: LoginService,
     private sanitizer: DomSanitizer,
-    private router: Router
+    private router: Router,
+    private routerLoggerService:RouterLoggerService
   ) {}
 
   ngOnInit() {
@@ -42,6 +44,11 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const userName = this.loginService.currentUserName || 'anonymous';
+
+        // let userName = (this.loginService.currentUserName) ? this.loginService.currentUserName : "anonymous";
+        let logMsg = new Date().toLocaleString() + ": " + userName + " navigates to " + event.url;
+        this.routerLoggerService.log(logMsg).subscribe();
+        
         console.log(
           `${new Date().toLocaleString()}: ${userName} navigates to ${event.url}`
         );
