@@ -58,9 +58,9 @@ export class TasksComponent {
     switch (status) {
       case 'Holding': className = 'text-secondary'; break;
       case 'Prioritized': className = 'text-primary'; break;
-      case 'Started': className = 'text-info'; break;
-      case 'Finished': className = 'text-success'; break;
-      case 'Reverted': className = 'text-danger'; break;
+      case 'Started': className = 'text-info text-white'; break;
+      case 'Finished': className = 'text-success text-white'; break;
+      case 'Reverted': className = 'text-danger text-white'; break;
       default: className = 'text-default'; break;
     }
     return className;

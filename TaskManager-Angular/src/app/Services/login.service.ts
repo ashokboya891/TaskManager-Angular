@@ -21,7 +21,7 @@ export class LoginService {
   // Observable to track login state
   public isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  constructor(private httpbackend: HttpBackend, private jwtHelperService: JwtHelperService,) {
+  constructor(private httpbackend: HttpBackend, private jwtHelperService: JwtHelperService) {
     const user = sessionStorage.getItem('currentUser');
     if (user) {
       const parsedUser = JSON.parse(user);
